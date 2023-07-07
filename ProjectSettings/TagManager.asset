@@ -8,6 +8,8 @@ TagManager:
   - Enemy1
   - Enemy2
   - Enemy3
+  - GameManager
+  - TriggerPushback
   layers:
   - Default
   - TransparentFX

@@ -5,10 +5,9 @@ using UnityEngine;
 public class CarControllerAI : MonoBehaviour
 {
     [SerializeField] private Transform _targetPositionTransform;
-    [SerializeField] private float _searchRadius = 90f;
+    [SerializeField] private float _searchRadius = 80f;
     [SerializeField] private LayerMask _vehicleLayerMask;
 
-    private GameManager _gameManager;
     private CarController _carController;
 
     private float _forwardAmound = 0f;
@@ -17,8 +16,6 @@ public class CarControllerAI : MonoBehaviour
     private Vector3 _targetPosition;
 
     private Collider[] _enemies;
-
-    public Transform testTargetDefaultTransform;
 
     private Transform _defaultTarget;
 
@@ -36,33 +33,23 @@ public class CarControllerAI : MonoBehaviour
         set { _tagName = value; }
     }
 
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, _searchRadius);
+    }
+
+
     private void Awake()
     {
-        //_gameManager = GetComponent<GameManager>();
-        _gameManager = FindObjectOfType<GameManager>();
         _carController = GetComponent<CarController>();
     }
 
     private void Start()
     {
-        _enemies = new Collider[4];
-        //_targetPosition = _targetPositionTransform.position;
-        _gameManager.OnDefaultTargetPositionSet += SetTargetPosition;
+        _enemies = new Collider[6];
     }
-
-    private void SetTargetPosition(Transform targetPosition)
-    {
-        testTargetDefaultTransform = targetPosition;
-    }
-
-    /*
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(transform.position, _searchRadius);
-    }
-    */
-    
 
     private void FixedUpdate()
     {
@@ -82,27 +69,23 @@ public class CarControllerAI : MonoBehaviour
         {
             Collider enemy = _enemies[i];
 
-            if (enemy.gameObject.CompareTag(_tagName) || enemy.gameObject.CompareTag("Untagged"))
+            if (!enemy.CompareTag(_tagName) && !enemy.CompareTag("TriggerPushback") && !enemy.CompareTag("Untagged")&& enemy.gameObject.layer == LayerMask.NameToLayer("Vehicle"))
             {
-                continue;
+                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                if (distanceToEnemy < closestDistance)
+                {
+                    closestDistance = distanceToEnemy;
+                    closestEnemy = enemy.transform;
+                }
             }
 
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < closestDistance)
-            {
-                closestDistance = distanceToEnemy;
-                closestEnemy = enemy.transform;
-            }
         }
 
         if (closestEnemy != null)
         {
-            //Debug.Log($"Closest enemy: {closestEnemy.name}");
             _targetPosition = closestEnemy.position;
         } else
         {
-            //_targetPosition = _targetPositionTransform.position;
-            //_targetPosition = testTargetDefaultTransform.position;
             if (_defaultTarget != null)
             {
                 _targetPosition = _defaultTarget.position;

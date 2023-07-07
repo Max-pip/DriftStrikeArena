@@ -9,17 +9,21 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> allCars = new List<GameObject>();
 
-    public Action<Transform> OnDefaultTargetPositionSet;
-
     [SerializeField] private List<GameObject> _enemyPrefabs = new List<GameObject>();
 
     private void Start()
+    {
+        AllForStart();
+    }
+
+    private void AllForStart()
     {
         for (int i = 0; i < _spawnPoints.Count; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0, _enemyPrefabs.Count);
 
             GameObject enemyCarPrefab = Instantiate(_enemyPrefabs[randomIndex], _spawnPoints[i].position, Quaternion.identity);
+            enemyCarPrefab.tag = $"Enemy{i}";
 
             CarControllerAI carControllerAI = enemyCarPrefab.GetComponent<CarControllerAI>();
             if (carControllerAI != null)

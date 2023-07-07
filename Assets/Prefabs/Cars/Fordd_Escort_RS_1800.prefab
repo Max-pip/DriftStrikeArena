@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4965816166568269631}
   - component: {fileID: 6935896218196547403}
   - component: {fileID: 4327344543856316233}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: wheel_RR_Mesh_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5270513775940100951}
   - component: {fileID: 4471870671761435966}
   - component: {fileID: 1863219451784038723}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: wheel_FL_Mesh_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 7974301826455478257}
   - component: {fileID: 6089658826098877102}
   - component: {fileID: 7362023049616629108}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: wheel_FR_Mesh_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 8490256717469642810}
   - component: {fileID: 6525333985999275686}
   - component: {fileID: 7666387555518279819}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Fordd_Escort_RS_1800
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,8 +282,9 @@ Transform:
   m_Children:
   - {fileID: 7953558317645051459}
   - {fileID: 2341082803155097332}
+  - {fileID: 2691595500236183410}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8490256717469642810
 MonoBehaviour:
@@ -355,7 +356,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   _slipModification: 20
   _wheelCollider: {fileID: 5200507892811385294}
-  _extraValueToGround: 0.5
 --- !u!54 &6525333985999275686
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -406,7 +406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3860495779872127622}
   - component: {fileID: 413261388479617421}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: wheel_RR_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,7 +477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2341082803155097332}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wheels_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -514,7 +514,7 @@ GameObject:
   - component: {fileID: 9145507710551189002}
   - component: {fileID: 6579209749825276313}
   - component: {fileID: 8964361319746335850}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: wheel_RL_Mesh_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -595,7 +595,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7953558317645051459}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CarBody_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -618,6 +618,72 @@ Transform:
   m_Father: {fileID: 3161326606088913275}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5187272572756445397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2691595500236183410}
+  - component: {fileID: 7378418971239486479}
+  - component: {fileID: 5098963671569578217}
+  m_Layer: 10
+  m_Name: TriggerPushback
+  m_TagString: TriggerPushback
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2691595500236183410
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187272572756445397}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3161326606088913275}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &7378418971239486479
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187272572756445397}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3429203, y: 0.5251484, z: 0.25579453}
+  m_Center: {x: 0.023341179, y: -0.31806862, z: 2.008791}
+--- !u!114 &5098963671569578217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5187272572756445397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa19af9a7f7fed4b9701f79349af463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8152108380756459146
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,7 +694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 784775214639353930}
   - component: {fileID: 8287133764446063319}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: wheel_RL_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -702,9 +768,9 @@ GameObject:
   - component: {fileID: 8205057269661689262}
   - component: {fileID: 420127894363650929}
   - component: {fileID: 3853026368958941480}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Body_Mesh_4
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -807,7 +873,7 @@ GameObject:
   - component: {fileID: 2720103329242014635}
   - component: {fileID: 5009654183029853692}
   - component: {fileID: 5200507892811385294}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: wheel_FL_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -894,7 +960,7 @@ GameObject:
   - component: {fileID: 4460943167191335821}
   - component: {fileID: 6818142648760220191}
   - component: {fileID: 8265111027451842119}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: wheel_FR_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

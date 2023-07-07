@@ -58,6 +58,14 @@ public class CarController : MonoBehaviour
     private Vector3 _velocityVector = new Vector3(0f, 0f, 0f);
     private Vector3 _pVelocityVector = new Vector3(0f, 0f, 0f);
 
+    private float _receiveDamage = 4000f;
+
+    public float ReceiveDamage
+    {
+        get { return _receiveDamage; } 
+        private set { _receiveDamage = value; }
+    }
+
     #endregion
 
     void Start()
@@ -262,26 +270,10 @@ public class CarController : MonoBehaviour
         }
         return bounds;
     }
-
-    /*
-    private void OnTriggerEnter(Collider other)
+    
+    public float TakingDamage(float inscreaseTakingDamage)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Vehicle"))
-        {
-
-            Vector3 rigidbodyForward = transform.forward;
-
-            Rigidbody enemyRigidbody = other.gameObject.GetComponentInParent<Rigidbody>();
-
-            if (enemyRigidbody != null)
-            {
-                
-                enemyRigidbody.AddForce((rigidbodyForward + new Vector3(0, 3f, 0)) * 5000f, ForceMode.Impulse);
-            } else
-            {
-                Debug.Log("No enemy rigidbody");
-            }
-        }
+        _receiveDamage += inscreaseTakingDamage;
+        return _receiveDamage;
     }
-    */
 }
