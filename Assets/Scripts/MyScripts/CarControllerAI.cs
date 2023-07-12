@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CarControllerAI : MonoBehaviour
 {
+    public static Action onWinPanel;
+
     [SerializeField] private Transform _targetPositionTransform;
     [SerializeField] private float _searchRadius = 80f;
     [SerializeField] private LayerMask _vehicleLayerMask;
@@ -95,10 +98,10 @@ public class CarControllerAI : MonoBehaviour
 
     private void CommandMoveToEnemy()
     {
+        float distanceToTarget = Vector3.Distance(transform.position, _targetPosition);
+
         Vector3 dirToMovePosition = (_targetPosition - transform.position).normalized;
         float dot = Vector3.Dot(transform.forward, dirToMovePosition);
-
-        float distanceToTarget = Vector3.Distance(transform.position, _targetPosition);
 
         if (dot > 0)
         {
@@ -131,5 +134,17 @@ public class CarControllerAI : MonoBehaviour
 
         _carController.ForwardValue = _forwardAmound;
         _carController.TurnValue = _turnAmound;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DeadZone"))
+        {
+            GameManager.Instance.allEnemyCars.Remove(this.gameObject);
+            if (GameManager.Instance.allEnemyCars.Count < 1 && GameManager.Instance.isGameOver == false)
+            {
+                onWinPanel?.Invoke();
+            }
+        }
     }
 }

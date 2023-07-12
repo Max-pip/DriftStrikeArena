@@ -4,18 +4,12 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    [SerializeField] private Rigidbody rb;
-
-    private void OnTriggerEnter(Collider other)
+    private void Start()
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Vehicle"))
+        for (int i = 0; i < 4; i++)
         {
-            Vector3 rbForward = transform.forward;
-            //rbForward.y = 0f;
-
-            Rigidbody otherRigidbody = other.GetComponentInParent<Rigidbody>();
-
-            otherRigidbody.AddForce(rbForward * 5000f, ForceMode.Impulse);
+            int randomIndex = UnityEngine.Random.Range(0, 15);
+            Debug.Log(randomIndex);
         }
     }
 }

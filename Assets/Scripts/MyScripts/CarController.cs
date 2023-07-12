@@ -22,6 +22,8 @@ public class CarController : MonoBehaviour
     [SerializeField] private AnimationCurve _slipL;    // Slip hysteresis static to full (x, input = speed)
     [SerializeField] private AnimationCurve _slipU;    // Slip hysteresis full to static (y, output = slip ratio)
     [SerializeField] private float _slipModification = 20f;     // Basically widens the slip curve
+    [SerializeField] private TrailRenderer _leftTrail;
+    [SerializeField] private TrailRenderer _rightTrail;
     private float _minRotationSpeed = 1f;           // Velocity to start rotating
     private float _maxRotationSpeed = 4f;           // Velocity to reach max rotation
 
@@ -94,6 +96,8 @@ public class CarController : MonoBehaviour
 
         RotateBehaviour();
 
+        Trail();
+
         Controller();
 
         RotateVelocityVector();
@@ -165,11 +169,28 @@ public class CarController : MonoBehaviour
         {
             // Slip => Normal
             _slip = this._slipU.Evaluate(Mathf.Abs(_pVelocityVector.x) / _slipModification);
-            if (_slip == 0f) _isSlip = false;
+            if (_slip != 1f) _isSlip = false;
         }
 
         _rotate *= (1f - 0.3f * _slip);   // Overall rotation, (body + vector)
         _rotateVelocity *= (1f - _slip);          // The vector modifier (just vector)
+    }
+
+    private void Trail()
+    {
+        if (_leftTrail != null && _rightTrail != null)
+        {
+            if (_isSlip && _isGrounded)
+            {
+                _leftTrail.emitting = true;
+                _rightTrail.emitting = true;
+            }
+            else
+            {
+                _leftTrail.emitting = false;
+                _rightTrail.emitting = false;
+            }
+        }       
     }
 
     private void RotateVelocityVector()

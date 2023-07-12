@@ -22,13 +22,12 @@ public class TriggerPushback : MonoBehaviour
         {
             onTouchedTriggerByEnemy.Invoke(enemyCarController.TakingDamage(1000f));
             _damageModifier = enemyCarController.ReceiveDamage;
-            Debug.Log($"{_damageModifier}");
         }
 
 
         if (enemyRigidbody != null)
         {
-            Vector3 forceDirection = (rigidbodyForward + new Vector3(0, 3f, 0)).normalized;
+            Vector3 forceDirection = (rigidbodyForward + new Vector3(0, 2f, 0)).normalized;
             enemyRigidbody.AddForce(forceDirection * _damageModifier, ForceMode.Impulse); 
         }
     }
