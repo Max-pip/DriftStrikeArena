@@ -4,13 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - DeadZone
+  - GameManager
+  - TriggerPushback
   - Enemy0
   - Enemy1
   - Enemy2
   - Enemy3
-  - GameManager
-  - TriggerPushback
-  - DeadZone
   layers:
   - Default
   - TransparentFX
@@ -19,10 +19,10 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - PostProcessing
-  - 
   - Vehicle
+  - 
+  - 
+  - 
   - 
   - 
   - 

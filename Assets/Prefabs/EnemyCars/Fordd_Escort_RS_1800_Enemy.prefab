@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4013376667428818280}
   - component: {fileID: 8583097792544429271}
   - component: {fileID: 2645328237030082883}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: wheel_FR_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 2942723303980023694}
   - component: {fileID: 870908744393131336}
   - component: {fileID: 8715309155266727011}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Body_Mesh_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 3248283559632773042}
   - component: {fileID: 3479160603928621152}
   - component: {fileID: 8765240954130117610}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: wheel_FL_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3770913758348325499}
   - component: {fileID: 740157523772348724}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: RightTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 2411572524087346180}
   - component: {fileID: 461420883885452252}
   - component: {fileID: 5362260220949107908}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: wheel_RL_Mesh_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -509,7 +509,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5246829864032312492}
   - component: {fileID: 751480069132638708}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: wheel_RR_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 1787849291447942659}
   - component: {fileID: 4440347991087834116}
   - component: {fileID: 4557887691946394849}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: wheel_RR_Mesh_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -666,7 +666,7 @@ GameObject:
   - component: {fileID: 4797819367446323056}
   - component: {fileID: 4544363476969003693}
   - component: {fileID: 2913130279621335988}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: TriggerPushback
   m_TagString: TriggerPushback
   m_Icon: {fileID: 0}
@@ -730,7 +730,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4721913721445723616}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: CarBody_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -763,7 +763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2099842181893768104}
   - component: {fileID: 682916251338937439}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: LeftTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -900,7 +900,7 @@ GameObject:
   - component: {fileID: 8094803464081475233}
   - component: {fileID: 4149553106042388623}
   - component: {fileID: 5166076799338303510}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: wheel_FR_Mesh_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +984,7 @@ GameObject:
   - component: {fileID: 2847032370052306537}
   - component: {fileID: 5483010338108560575}
   - component: {fileID: 1735925553626949632}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Fordd_Escort_RS_1800_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   _searchRadius: 80
   _vehicleLayerMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 128
 --- !u!1 &7552270466506493504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1136,7 @@ GameObject:
   - component: {fileID: 6889786804947548497}
   - component: {fileID: 2787853997783333831}
   - component: {fileID: 1446961051272016647}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: wheel_FL_Mesh_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1217,7 +1217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6971353746486059887}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Wheels_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1253,7 +1253,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5078437042007318811}
   - component: {fileID: 8412237067371965992}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: wheel_RL_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
