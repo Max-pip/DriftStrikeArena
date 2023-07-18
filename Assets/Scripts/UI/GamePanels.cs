@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,7 +6,9 @@ public class GamePanels : MonoBehaviour
 {
     [SerializeField] private Canvas _UIHud;
     [SerializeField] private GameObject _winPanel;
+    [SerializeField] private TextMeshProUGUI _winBalance;
     [SerializeField] private GameObject _losePanel;
+    [SerializeField] private TextMeshProUGUI _loseBalance;
     [SerializeField] private GameObject _playPanel;
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private Button _pauseButton;
@@ -13,6 +16,8 @@ public class GamePanels : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
+
         _pauseButton.onClick.AddListener(delegate
         {
             onClickedPauseButton();
@@ -60,6 +65,9 @@ public class GamePanels : MonoBehaviour
         _UIHud.enabled = false;
         _playPanel.SetActive(false);
         _winPanel.SetActive(true);
+        MainManager.Instance.coins += 1;
+        MainManager.Instance.SaveGameData();
+        _winBalance.text = $"Your balance: {MainManager.Instance.coins}";
     }
 
     private void LosePanel()
@@ -68,5 +76,6 @@ public class GamePanels : MonoBehaviour
         _UIHud.enabled = false;
         _playPanel.SetActive(false);
         _losePanel.SetActive(true);
+        _loseBalance.text = $"Your balance: {MainManager.Instance.coins}";
     }
 }

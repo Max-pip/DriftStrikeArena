@@ -7,6 +7,9 @@ public class CarController : MonoBehaviour
     #region Parameters
     [SerializeField] private Rigidbody _rigidbody;
 
+    [SerializeField] private AudioSource _carAudio;
+    [SerializeField] private AudioClip _fallingCarClip;
+
     [Header("Initial Parameters")]
     [SerializeField] private float _initialAccel = 15.0f;         // In meters/second2 
     [SerializeField] private float _initialGripX = 12.0f;         // In meters/second2
@@ -296,5 +299,14 @@ public class CarController : MonoBehaviour
     {
         _receiveDamage += inscreaseTakingDamage;
         return _receiveDamage;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DeadZone"))
+        {
+            //_carAudio.Play();
+            _carAudio.PlayOneShot(_fallingCarClip);
+        }
     }
 }

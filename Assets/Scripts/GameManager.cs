@@ -11,6 +11,15 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
 
     [SerializeField] private GameObject _playerPrefab;
+
+    /*
+    public GameObject PlayerPrafab
+    {
+        private get { return _playerPrefab; }
+        set { _playerPrefab = value; }
+    }
+    */
+
     [SerializeField] private Transform _playerStartPosition;
 
     public GameObject explosionPrefab;
@@ -34,13 +43,15 @@ public class GameManager : MonoBehaviour
 
     private void AllForStart()
     {
+        _playerPrefab = MainManager.Instance.PlayerPrefab;
+
         playerGameObject = Instantiate(_playerPrefab, _playerStartPosition.position, Quaternion.identity);
 
         for (int i = 0; i < _spawnPoints.Count; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0, _enemyPrefabs.Count);
 
-            GameObject enemyCarPrefab = Instantiate(_enemyPrefabs[randomIndex], _spawnPoints[i].position, Quaternion.identity);
+            GameObject enemyCarPrefab = Instantiate(_enemyPrefabs[randomIndex], _spawnPoints[i].position, Quaternion.Euler(new Vector3(0, _spawnPoints[i].eulerAngles.y, 0)));
             enemyCarPrefab.tag = $"Enemy{i}";
 
             CarControllerAI carControllerAI = enemyCarPrefab.GetComponent<CarControllerAI>();

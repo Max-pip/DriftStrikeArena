@@ -11,6 +11,8 @@ TagManager:
   - Enemy1
   - Enemy2
   - Enemy3
+  - PurchaseButton
+  - SelectButton
   layers:
   - Default
   - TransparentFX

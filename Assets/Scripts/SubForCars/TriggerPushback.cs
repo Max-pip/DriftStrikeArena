@@ -8,6 +8,8 @@ public class TriggerPushback : MonoBehaviour
 {
     public static UnityEvent<float> onTouchedTriggerByEnemy = new UnityEvent<float>();
 
+    [SerializeField] private AudioSource _damageAudio;
+
     private float _damageModifier;
 
     private void OnTriggerEnter(Collider other)
@@ -30,6 +32,7 @@ public class TriggerPushback : MonoBehaviour
             GameObject explosion = Instantiate(GameManager.Instance.explosionPrefab, transform.position, transform.rotation);
             Vector3 forceDirection = (rigidbodyForward + new Vector3(0, 2f, 0)).normalized;
             enemyRigidbody.AddForce(forceDirection * _damageModifier, ForceMode.Impulse); 
+            _damageAudio.Play();
             Destroy(explosion, 1f);
         }
     }
