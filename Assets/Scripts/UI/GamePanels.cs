@@ -1,6 +1,9 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+using System.Collections.Generic;
+using System.Collections;
 
 public class GamePanels : MonoBehaviour
 {
@@ -13,10 +16,23 @@ public class GamePanels : MonoBehaviour
     [SerializeField] private GameObject _pausePanel;
     [SerializeField] private Button _pauseButton;
     [SerializeField] private Button _resumeButton;
+    [SerializeField] private TextMeshProUGUI _startText;
+    [SerializeField] private GameObject _startTextContainer;
+
+    private float _initialSizeFont;
+    private float _initialSizeFontBalance;
+    private float _targetMaxSizeFontBalance = 95f;
+    private float _targetMaxSizeFont = 145f;
+    private float _targetMinSizeFont = 2f;
+    private float _increaseDuration = 0.75f;
+    private float _decreaseDuration = 0.35f;
+    private float _fadeOutDuration = 0.35f;
 
     private void Start()
     {
         Time.timeScale = 1f;
+
+        _initialSizeFont = _startText.fontSize;
 
         _pauseButton.onClick.AddListener(delegate
         {
@@ -27,6 +43,9 @@ public class GamePanels : MonoBehaviour
         { 
             onClickedResumeButton();
         });
+
+        StartCoroutine(AnimateTextSizeCoroutine());
+        //StartTextAnimation();
     }
 
     private void OnEnable()
@@ -68,6 +87,7 @@ public class GamePanels : MonoBehaviour
         MainManager.Instance.coins += 1;
         MainManager.Instance.SaveGameData();
         _winBalance.text = $"Your balance: {MainManager.Instance.coins}";
+        StartCoroutine(AnimateBalanceTextCoroutine(_winBalance));
     }
 
     private void LosePanel()
@@ -77,5 +97,69 @@ public class GamePanels : MonoBehaviour
         _playPanel.SetActive(false);
         _losePanel.SetActive(true);
         _loseBalance.text = $"Your balance: {MainManager.Instance.coins}";
+        StartCoroutine(AnimateBalanceTextCoroutine(_loseBalance));
+    }
+
+    private IEnumerator AnimateBalanceTextCoroutine(TextMeshProUGUI balanceText)
+    {
+        _initialSizeFontBalance = balanceText.fontSize;
+
+        yield return new WaitForSeconds(0.3f);
+
+        float timePassed = 0f;
+
+        while (timePassed < _increaseDuration)
+        {
+            timePassed += Time.deltaTime;
+            float t = Mathf.Clamp01(timePassed / _increaseDuration);
+            float newSize = Mathf.Lerp(_initialSizeFontBalance, _targetMaxSizeFontBalance, t);
+            balanceText.fontSize = newSize;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        timePassed = 0f;
+
+        while (timePassed < _decreaseDuration)
+        {
+            timePassed += Time.deltaTime;
+            float t = Mathf.Clamp01(timePassed / _decreaseDuration);
+            float newSize = Mathf.Lerp(_targetMaxSizeFontBalance, _initialSizeFontBalance, t);
+            balanceText.fontSize = newSize;
+            yield return null;
+        }
+    }
+
+    private IEnumerator AnimateTextSizeCoroutine()
+    {
+        float timePassed = 0f;
+
+        while (timePassed < _increaseDuration)
+        {
+            timePassed += Time.deltaTime;
+            float t = Mathf.Clamp01(timePassed / _increaseDuration);
+            float newSize = Mathf.Lerp(_initialSizeFont, _targetMaxSizeFont, t);
+            _startText.fontSize = newSize;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        timePassed = 0f;
+
+        while (timePassed < _decreaseDuration)
+        {
+            timePassed += Time.deltaTime;
+            float t = Mathf.Clamp01(timePassed / _decreaseDuration);
+            float newSize = Mathf.Lerp(_targetMaxSizeFont, _targetMinSizeFont, t);
+            _startText.DOFade(0f, _fadeOutDuration);
+            _startText.fontSize = newSize;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.1f);
+
+        Destroy(_startTextContainer);
     }
 }

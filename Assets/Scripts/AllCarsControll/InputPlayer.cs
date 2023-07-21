@@ -10,19 +10,7 @@ public class InputPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /*
-#if UNITY_EDITOR
-        KeybordInput();
-#endif
-        */
-
-#if UNITY_ANDROID
         MobileInput();
-#endif
-
-#if UNITY_IOS
-        MobileInput();
-#endif
     }
 
     private void MobileInput()

@@ -5,6 +5,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 using System;
 
 public class PlayerShopManager : MonoBehaviour
@@ -18,14 +19,19 @@ public class PlayerShopManager : MonoBehaviour
     [Header("Text")]
     [SerializeField] private TextMeshProUGUI _balanceText;
     [SerializeField] private TextMeshProUGUI _selectText;
+    [SerializeField] private TextMeshProUGUI _priceText; 
 
     [Header("Sounds")]
     [SerializeField] private AudioClip _purchaseClip;
+    [SerializeField] private AudioClip _cannotPurchaseClip;
     [SerializeField] private AudioClip _selectClip;
     [SerializeField] private AudioClip _swapModelClip;
 
     private GameObject _purchaseButtonObj;
     private GameObject _selectButtonObj;
+
+    private Color _cannotPurchaseColor = Color.red;
+    private float _durationChangeColorText = 0.25f;
 
     [SerializeField] private PlayerModelsData[] _playerDataModels;
 
@@ -44,11 +50,14 @@ public class PlayerShopManager : MonoBehaviour
         PlayerModelsData currentPlayerModel = _playerDataModels[_currentModelIndex];
         if (currentPlayerModel.isPurchased)
         {
+            _priceText.gameObject.SetActive(false);
             _purchaseButtonObj.SetActive(false);
             _selectButtonObj.SetActive(true);
         }
         else
         {
+            _priceText.gameObject.SetActive(true);
+            _priceText.text = $"Price: {currentPlayerModel.price}";
             _purchaseButtonObj.SetActive(true);
             _selectButtonObj.SetActive(false);
         }
@@ -97,10 +106,13 @@ public class PlayerShopManager : MonoBehaviour
         PlayerModelsData currentPlayerModel = _playerDataModels[_currentModelIndex];
         if (currentPlayerModel.isPurchased) 
         {
+            _priceText.gameObject.SetActive(false);
             _purchaseButtonObj.SetActive(false);
             _selectButtonObj.SetActive(true);
         } else
         {
+            _priceText.gameObject.SetActive(true);
+            _priceText.text = $"Price: {currentPlayerModel.price}";
             _purchaseButtonObj.SetActive(true);
             _selectButtonObj.SetActive(false);
         }
@@ -120,11 +132,14 @@ public class PlayerShopManager : MonoBehaviour
         PlayerModelsData currentPlayerModel = _playerDataModels[_currentModelIndex];
         if (currentPlayerModel.isPurchased)
         {
+            _priceText.gameObject.SetActive(false);
             _purchaseButtonObj.SetActive(false);
             _selectButtonObj.SetActive(true);
         }
         else
         {
+            _priceText.gameObject.SetActive(true);
+            _priceText.text = $"Price: {currentPlayerModel.price}";
             _purchaseButtonObj.SetActive(true);
             _selectButtonObj.SetActive(false);
         }
@@ -189,6 +204,7 @@ public class PlayerShopManager : MonoBehaviour
             MainManager.Instance.coins -= desiredPurchasePlayerModel.price;
             desiredPurchasePlayerModel.isPurchased = true;
 
+            _priceText.gameObject.SetActive(false);
             _balanceText.text = $"Balance: {MainManager.Instance.coins}";
 
             SavePurchasedPlayerModel();
@@ -198,8 +214,19 @@ public class PlayerShopManager : MonoBehaviour
             _purchaseButtonObj?.SetActive(false);
         } else
         {
-            Debug.Log("Not enough coins!");
+            ChangeTextColor();
+            AudioManager.Instance.PurchaseSound(_cannotPurchaseClip);
         }
+    }
+
+    private void ChangeTextColor()
+    {
+        _balanceText.DOColor(_cannotPurchaseColor, _durationChangeColorText).OnComplete(ChangeTextColorBack);
+    }
+
+    private void ChangeTextColorBack()
+    {
+        _balanceText.DOColor(Color.white, _durationChangeColorText);
     }
 
     #region SaveLoadMethods

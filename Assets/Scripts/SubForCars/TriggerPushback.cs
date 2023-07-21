@@ -22,7 +22,7 @@ public class TriggerPushback : MonoBehaviour
 
         if (enemyCarController != null)
         {
-            onTouchedTriggerByEnemy.Invoke(enemyCarController.TakingDamage(1000f));
+            onTouchedTriggerByEnemy.Invoke(enemyCarController.TakingDamage(800f));
             _damageModifier = enemyCarController.ReceiveDamage;
         }
 

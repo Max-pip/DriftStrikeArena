@@ -284,8 +284,9 @@ Transform:
   - {fileID: 7953558317645051459}
   - {fileID: 2341082803155097332}
   - {fileID: 2691595500236183410}
+  - {fileID: 364577022297301470}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: -144, z: 0}
 --- !u!54 &6525333985999275686
 Rigidbody:
@@ -388,6 +389,10 @@ MonoBehaviour:
   _leftTrail: {fileID: 5028858006849212156}
   _rightTrail: {fileID: 4870788383181421607}
   _wheelCollider: {fileID: 5200507892811385294}
+  _pushTurnForce: 4
+  _pushDurationForce: 0.5
+  _smoothTurnDuration: 3
+  t: 0
 --- !u!114 &7666387555518279819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1158,6 +1163,73 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &7144200956651265561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 364577022297301470}
+  - component: {fileID: 776782186824137887}
+  - component: {fileID: 8436870192397780432}
+  m_Layer: 7
+  m_Name: TriggerDefaultTurn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &364577022297301470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7144200956651265561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3161326606088913275}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &776782186824137887
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7144200956651265561}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.89029044, y: 0.09038007, z: 1.089039}
+  m_Center: {x: 0.012508341, y: 0.4098289, z: -0.17657876}
+--- !u!114 &8436870192397780432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7144200956651265561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a82c8ff7e869740838c9486258c875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carController: {fileID: 8490256717469642810}
 --- !u!1 &8152108380756459146
 GameObject:
   m_ObjectHideFlags: 0

@@ -72,7 +72,7 @@ public class CarControllerAI : MonoBehaviour
         {
             Collider enemy = _enemies[i];
 
-            if (!enemy.CompareTag(_tagName) && !enemy.CompareTag("TriggerPushback") && !enemy.CompareTag("Untagged") && !enemy.CompareTag("DeadZone") && enemy.gameObject.layer == LayerMask.NameToLayer("Vehicle"))
+            if (!enemy.CompareTag(_tagName) && !enemy.CompareTag("TriggerPushback") && !enemy.CompareTag("Ground") && !enemy.CompareTag("Untagged") && !enemy.CompareTag("DeadZone") && enemy.gameObject.layer == LayerMask.NameToLayer("Vehicle"))
             {
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
                 if (distanceToEnemy < closestDistance)

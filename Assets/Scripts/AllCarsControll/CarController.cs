@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -35,6 +36,12 @@ public class CarController : MonoBehaviour
     private Bounds _groupCollider;
     private float _distToGround;
 
+    [Header("Coup Parameters")]
+    [SerializeField] private float _pushTurnForce = 4f;
+    [SerializeField] private float _pushDurationForce = 0.5f;
+    [SerializeField] private float _smoothTurnDuration = 3;
+    private float _timeForTurnCoroutine;
+
     // Ground & air angular drag
     // reduce stumbling time on ground but maintain on-air one
     private float _angularDragGround = 5.0f;
@@ -63,7 +70,7 @@ public class CarController : MonoBehaviour
     private Vector3 _velocityVector = new Vector3(0f, 0f, 0f);
     private Vector3 _pVelocityVector = new Vector3(0f, 0f, 0f);
 
-    private float _receiveDamage = 4000f;
+    private float _receiveDamage = 2000f;
 
     public float ReceiveDamage
     {
@@ -301,11 +308,42 @@ public class CarController : MonoBehaviour
         return _receiveDamage;
     }
 
+    private IEnumerator AddImpulseVahicleCoroutine()
+    {
+        _rigidbody.useGravity = false;
+
+        _rigidbody.AddForce(Vector3.up * _pushTurnForce, ForceMode.VelocityChange);
+
+        yield return new WaitForSeconds(_pushDurationForce);
+
+        _rigidbody.useGravity = true;
+    }
+
+    private IEnumerator DefaultZTurnRotationCoroutine()
+    {
+        Quaternion defaultTurnVehicle = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
+
+        _timeForTurnCoroutine = 0f;
+
+        while (_timeForTurnCoroutine < 0.4f)
+        {
+            _timeForTurnCoroutine += Time.deltaTime / _smoothTurnDuration;
+
+            transform.rotation = Quaternion.Slerp(transform.rotation, defaultTurnVehicle, _timeForTurnCoroutine);
+            yield return null;
+        }
+    }
+
+    public void StartDefaultTurnVahicleCoroutine()
+    {
+        StartCoroutine(DefaultZTurnRotationCoroutine());
+        StartCoroutine(AddImpulseVahicleCoroutine());
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("DeadZone"))
         {
-            //_carAudio.Play();
             _carAudio.PlayOneShot(_fallingCarClip);
         }
     }

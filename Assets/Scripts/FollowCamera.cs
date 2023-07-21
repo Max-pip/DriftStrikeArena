@@ -26,7 +26,6 @@ public class FollowCamera : MonoBehaviour
     private Vector3 rotation;
     private Vector3 velocity = Vector3.zero;
 
-
     void Start()
     {
         target = GameManager.Instance.playerGameObject.transform;
