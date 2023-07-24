@@ -9,7 +9,8 @@ public class SceneLoader : MonoBehaviour
 
     private string _nameMainMenuScene = "MainMenuScene";
     private string _nameSelectPlayerScene = "SelectPlayerScene";
-    private string _namePlayScene = "PlayScene";
+    private string _nameSelectArenaScene = "SelectArenaScene";
+    public string nameCurrentPlayScene = "PlayScene";
 
     public void Restart()
     {
@@ -30,9 +31,15 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(_nameSelectPlayerScene);
     }
 
+    public void SelectArenaScene()
+    {
+        AudioManager.Instance.ClickButtonSound(_buttonClickClip);
+        SceneManager.LoadScene(_nameSelectArenaScene);
+    }
+
     public void PlayScene()
     {
         AudioManager.Instance.ClickButtonSound(_buttonClickClip);
-        SceneManager.LoadScene(_namePlayScene);
+        SceneManager.LoadScene(MainManager.Instance.ArenaName);
     }
 }

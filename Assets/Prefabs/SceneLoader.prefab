@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buttonClickClip: {fileID: 8300000, guid: 29bde6326b4c34ad8a12da475f79b50a, type: 3}
+  _nonPlaySceneMusic: {fileID: 8300000, guid: b95f425f538326b43b6c85e0960d8488, type: 3}
+  _playSceneMusic: {fileID: 8300000, guid: af6820b68bf376a43998c5f50d5cde34, type: 3}

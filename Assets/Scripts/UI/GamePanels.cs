@@ -8,23 +8,31 @@ using System.Collections;
 public class GamePanels : MonoBehaviour
 {
     [SerializeField] private Canvas _UIHud;
+
+    [Header("Panels")]
     [SerializeField] private GameObject _winPanel;
-    [SerializeField] private TextMeshProUGUI _winBalance;
     [SerializeField] private GameObject _losePanel;
-    [SerializeField] private TextMeshProUGUI _loseBalance;
     [SerializeField] private GameObject _playPanel;
     [SerializeField] private GameObject _pausePanel;
+    [Header("Text")]
+    [SerializeField] private GameObject _startTextContainer;
+    [SerializeField] private TextMeshProUGUI _winBalance;
+    [SerializeField] private TextMeshProUGUI _loseBalance;
+    [SerializeField] private TextMeshProUGUI _startText;
+    [Header("Buttons")]
     [SerializeField] private Button _pauseButton;
     [SerializeField] private Button _resumeButton;
-    [SerializeField] private TextMeshProUGUI _startText;
-    [SerializeField] private GameObject _startTextContainer;
+    [Header("Audio clips")]
+    [SerializeField] private AudioClip _winClip;
+    [SerializeField] private AudioClip _loseClip;
+    [SerializeField] private AudioClip _clickClip;
 
     private float _initialSizeFont;
     private float _initialSizeFontBalance;
-    private float _targetMaxSizeFontBalance = 95f;
-    private float _targetMaxSizeFont = 145f;
+    private float _targetMaxSizeFontBalance = 85f;
+    private float _targetMaxSizeFont = 110f;
     private float _targetMinSizeFont = 2f;
-    private float _increaseDuration = 0.75f;
+    private float _increaseDuration = 0.5f;
     private float _decreaseDuration = 0.35f;
     private float _fadeOutDuration = 0.35f;
 
@@ -45,7 +53,6 @@ public class GamePanels : MonoBehaviour
         });
 
         StartCoroutine(AnimateTextSizeCoroutine());
-        //StartTextAnimation();
     }
 
     private void OnEnable()
@@ -63,7 +70,12 @@ public class GamePanels : MonoBehaviour
     private void onClickedPauseButton()
     {
         GameManager.Instance.isPaused = true;
+        AudioManager.Instance.ClickButtonSound(_clickClip);
         Time.timeScale = 0;
+        if (_startTextContainer != null )
+        {
+            _startTextContainer.SetActive(false);
+        }
         _UIHud.enabled = false;
         _playPanel.SetActive(false);
         _pausePanel.SetActive(true);
@@ -72,6 +84,7 @@ public class GamePanels : MonoBehaviour
     private void onClickedResumeButton()
     {
         GameManager.Instance.isPaused = false;
+        AudioManager.Instance.ClickButtonSound(_clickClip);
         Time.timeScale = 1;
         _UIHud.enabled = true;
         _pausePanel.SetActive(false);
@@ -81,6 +94,7 @@ public class GamePanels : MonoBehaviour
     private void WinPanel()
     {
         GameManager.Instance.isGameOver = true;
+        AudioManager.Instance.WinSound(_winClip);
         _UIHud.enabled = false;
         _playPanel.SetActive(false);
         _winPanel.SetActive(true);
@@ -93,6 +107,7 @@ public class GamePanels : MonoBehaviour
     private void LosePanel()
     {
         GameManager.Instance.isGameOver = true;
+        AudioManager.Instance.LoseSound(_loseClip);
         _UIHud.enabled = false;
         _playPanel.SetActive(false);
         _losePanel.SetActive(true);
