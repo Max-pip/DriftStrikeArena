@@ -1021,7 +1021,7 @@ Transform:
   - {fileID: 7654119036103639824}
   - {fileID: 6431570720359669261}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -144, z: 0}
 --- !u!54 &4763472831477230647
 Rigidbody:
@@ -1062,7 +1062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa512e32c2e5c00489bada6c5ef8fbcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 4763472831477230647}
+  rigidbody: {fileID: 4763472831477230647}
   _carAudio: {fileID: 3374808241660607840}
   _fallingCarClip: {fileID: 8300000, guid: a235d590ef2a04d1b85b61ef4c21337c, type: 3}
   _initialAccel: 15
@@ -1127,7 +1127,6 @@ MonoBehaviour:
   _pushTurnForce: 4
   _pushDurationForce: 0.5
   _smoothTurnDuration: 3
-  t: 0
 --- !u!114 &1705682544082590544
 MonoBehaviour:
   m_ObjectHideFlags: 0

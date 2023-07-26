@@ -6,7 +6,7 @@ public class CarController : MonoBehaviour
 {
 
     #region Parameters
-    [SerializeField] private Rigidbody _rigidbody;
+    public Rigidbody rigidbody;
 
     [SerializeField] private AudioSource _carAudio;
     [SerializeField] private AudioClip _fallingCarClip;
@@ -36,11 +36,13 @@ public class CarController : MonoBehaviour
     private Bounds _groupCollider;
     private float _distToGround;
 
-    [Header("Coup Parameters")]
+    [Header("Turn over parameters")]
     [SerializeField] private float _pushTurnForce = 4f;
     [SerializeField] private float _pushDurationForce = 0.5f;
     [SerializeField] private float _smoothTurnDuration = 3;
     private float _timeForTurnCoroutine;
+
+    private MeshCollider _myMeshCollider;
 
     // Ground & air angular drag
     // reduce stumbling time on ground but maintain on-air one
@@ -87,7 +89,7 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        Debug.DrawRay(transform.position, _rigidbody.velocity / 2, Color.green);
+        Debug.DrawRay(transform.position, rigidbody.velocity / 2, Color.green);
         Debug.DrawRay(transform.position, -transform.up * (_distToGround + (_wheelCollider.radius * 1.5f)), Color.red);
     }
 
@@ -98,7 +100,7 @@ public class CarController : MonoBehaviour
         _gripX = _initialGripX;
         _gripZ = _initialGripZ;
         _rotateVelocity = _initialRotVel;
-        _rigidbody.angularDrag = _angularDragGround;
+        rigidbody.angularDrag = _angularDragGround;
 
         AdjustmentOfSlope();
 
@@ -116,16 +118,17 @@ public class CarController : MonoBehaviour
 
         MaxSpeed();
 
-        _rigidbody.velocity = transform.TransformDirection(_velocityVector);
+        rigidbody.velocity = transform.TransformDirection(_velocityVector);
     }
 
     private void AllForStart()
     {
+        _myMeshCollider = GetComponentInChildren<MeshCollider>();
         _groupCollider = GetBounds(gameObject);     // Get the full collider boundary of group
         _distToGround = _groupCollider.extents.y;    // Pivot to the outermost collider
 
         // Move the CoM to a fraction of colliders boundaries
-        _rigidbody.centerOfMass = Vector3.Scale(_groupCollider.extents, _centerOfMass);
+        rigidbody.centerOfMass = Vector3.Scale(_groupCollider.extents, _centerOfMass);
     }
 
     #region FixedUpdateMethods
@@ -150,7 +153,7 @@ public class CarController : MonoBehaviour
             _accel = 0f;
             _gripX = 0f;
             _gripZ = 0f;
-            _rigidbody.angularDrag = _angularDragAir;
+            rigidbody.angularDrag = _angularDragAir;
         }
     }
 
@@ -206,7 +209,7 @@ public class CarController : MonoBehaviour
     private void RotateVelocityVector()
     {
         // Get the local-axis velocity after rotation
-        _velocityVector = transform.InverseTransformDirection(_rigidbody.velocity);
+        _velocityVector = transform.InverseTransformDirection(rigidbody.velocity);
 
         // Rotate the velocity vector
         if (_isRotating)
@@ -241,14 +244,14 @@ public class CarController : MonoBehaviour
 
         if (ForwardValue > 0.5f || ForwardValue < -0.5f)
         {
-            _rigidbody.velocity += transform.forward * ForwardValue * _accel * Time.deltaTime;
+            rigidbody.velocity += transform.forward * ForwardValue * _accel * Time.deltaTime;
             _gripZ = 0f;     // Remove straight grip if wheel is rotating
         }
 
         _isRotating = false;
 
         // Get the local-axis velocity before new input (+x, +y, and +z = right, up, and forward)
-        _pVelocityVector = transform.InverseTransformDirection(_rigidbody.velocity);
+        _pVelocityVector = transform.InverseTransformDirection(rigidbody.velocity);
 
         // Turn statically
         if (TurnValue > 0.5f || TurnValue < -0.5f)
@@ -308,15 +311,17 @@ public class CarController : MonoBehaviour
         return _receiveDamage;
     }
 
+    #region TurnOverVehicleCoroutine
+
     private IEnumerator AddImpulseVahicleCoroutine()
     {
-        _rigidbody.useGravity = false;
+        rigidbody.useGravity = false;
 
-        _rigidbody.AddForce(Vector3.up * _pushTurnForce, ForceMode.VelocityChange);
+        rigidbody.AddForce(Vector3.up * _pushTurnForce, ForceMode.VelocityChange);
 
         yield return new WaitForSeconds(_pushDurationForce);
 
-        _rigidbody.useGravity = true;
+        rigidbody.useGravity = true;
     }
 
     private IEnumerator DefaultZTurnRotationCoroutine()
@@ -332,6 +337,7 @@ public class CarController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, defaultTurnVehicle, _timeForTurnCoroutine);
             yield return null;
         }
+        yield return null;
     }
 
     public void StartDefaultTurnVahicleCoroutine()
@@ -340,11 +346,17 @@ public class CarController : MonoBehaviour
         StartCoroutine(AddImpulseVahicleCoroutine());
     }
 
+    #endregion
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("DeadZone"))
         {
-            _carAudio.PlayOneShot(_fallingCarClip);
+            Destroy(_myMeshCollider);
+            if (MainManager.Instance.isSoundOn)
+            {
+                _carAudio.PlayOneShot(_fallingCarClip);
+            }
         }
     }
 }

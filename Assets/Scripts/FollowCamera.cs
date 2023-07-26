@@ -1,47 +1,30 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
     public Transform target;
 
-    [Tooltip("Use scene's current setup for offset.")]
-    public bool UseInitial = false;
-
-    [Tooltip("Local offset vs target.")]
-    public Vector3 Relative = new Vector3(0, 0, 0);    // Above & Forward, look-up the front-side
-
-    [Tooltip("Global offset vs target.")]
-    public Vector3 Offset = new Vector3(0, 5, -5);
-
-    [Tooltip("Static rotation target (degree).")]
-    public Vector3 Rotation = new Vector3(30, 0, 0);    // Example for looking down (degree)
-
     [Tooltip("Approximately the time it will take to reach the target.")]
-    public float smoothTime = 0.3F;
+    public float smoothTime = 0.3f;
 
-    private Vector3 relative;
+    public Vector3 zoom = new Vector3(0, 0, 0);
+
     private Vector3 offset;
-    private Vector3 rotation;
     private Vector3 velocity = Vector3.zero;
+
+    //Camera shake
+    public float shakeDuration = 0.1f;
+    public float shakeMagnitude = 0.5f;
+
+    private Vector3 _originalPos;
+    private Quaternion _originalRotation;
 
     void Start()
     {
         target = GameManager.Instance.playerGameObject.transform;
 
-        if (UseInitial)
-        {
-            relative = Relative;
-            offset = transform.position - target.transform.position;   // Vector operation
-            rotation = transform.rotation.eulerAngles;
-        }
-        else
-        {
-            relative = Relative;
-            offset = Offset;
-            rotation = Rotation;
-        }
+        offset = transform.position - target.transform.position;   // Vector operation
     }
 
     void Update()
@@ -51,12 +34,37 @@ public class FollowCamera : MonoBehaviour
             return;
         }
         // Define a target position relative to the the target transform
-        Vector3 targetPosition = target.TransformPoint(relative) + offset;
+        Vector3 targetPosition = target.position + offset + zoom;
 
         // Smoothly move the camera towards that target position
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
-        //transform.rotation = Quaternion.Euler(rotation);
     }
 
+    public void ShakeCamera()
+    {
+        _originalPos = transform.position;
+        _originalRotation = transform.rotation;
 
+        StartCoroutine(Shake());
+    }
+
+    private IEnumerator Shake()
+    {
+        float elapsedTime = 0;
+
+        while (elapsedTime < shakeDuration)
+        {
+            float x = Random.Range(-1f, 1f) * shakeMagnitude;
+            float y = Random.Range(-1f, 1f) * shakeMagnitude;
+
+            transform.position = _originalPos + new Vector3(x, y, 0f);
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        transform.position = _originalPos;
+        transform.rotation = _originalRotation;
+    }
 }

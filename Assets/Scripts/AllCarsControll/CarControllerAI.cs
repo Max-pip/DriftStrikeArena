@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CarControllerAI : MonoBehaviour
@@ -80,8 +78,7 @@ public class CarControllerAI : MonoBehaviour
                     closestDistance = distanceToEnemy;
                     closestEnemy = enemy.transform;
                 }
-            }
-
+            } 
         }
 
         if (closestEnemy != null)

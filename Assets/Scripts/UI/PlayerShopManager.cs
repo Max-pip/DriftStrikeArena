@@ -1,12 +1,10 @@
 using Assets.Scripts;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
-using System;
 
 public class PlayerShopManager : MonoBehaviour
 {

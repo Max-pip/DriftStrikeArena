@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
@@ -12,6 +9,7 @@ public class AudioManager : MonoBehaviour
     private const string NameTestPlayScene = "TestPlayScene";
 
     private string _currentSceneName;
+    private bool _isBattleScene = false;
 
     [Header("Audio source")]
     [SerializeField] private AudioSource _soundSource;
@@ -48,9 +46,14 @@ public class AudioManager : MonoBehaviour
         _currentSceneName = scene.name;
         if (_currentSceneName == NamePlayScene || _currentSceneName == NameTestPlayScene)
         {
-            PlayBackMusic(_playClip);
+            if (!_isBattleScene)
+            {
+                PlayBackMusic(_playClip);
+            }
+            _isBattleScene = true;
         } else
         {
+            _isBattleScene = false;
             if (_musicSource.clip == _startClip)
             {
                 return;
