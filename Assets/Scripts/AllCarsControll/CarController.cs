@@ -4,7 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class CarController : MonoBehaviour
 {
-
     #region Parameters
     public Rigidbody rigidbody;
 
@@ -39,7 +38,7 @@ public class CarController : MonoBehaviour
     [Header("Turn over parameters")]
     [SerializeField] private float _pushTurnForce = 4f;
     [SerializeField] private float _pushDurationForce = 0.5f;
-    [SerializeField] private float _smoothTurnDuration = 3;
+    [SerializeField] private float _smoothTurnDuration = 5;
     private float _timeForTurnCoroutine;
 
     private MeshCollider _myMeshCollider;
@@ -93,8 +92,10 @@ public class CarController : MonoBehaviour
         Debug.DrawRay(transform.position, -transform.up * (_distToGround + (_wheelCollider.radius * 1.5f)), Color.red);
     }
 
+    
     void FixedUpdate()
     {
+        
         _accel = _initialAccel;
         _rotate = initialRotate;
         _gripX = _initialGripX;
@@ -119,7 +120,9 @@ public class CarController : MonoBehaviour
         MaxSpeed();
 
         rigidbody.velocity = transform.TransformDirection(_velocityVector);
+        
     }
+   
 
     private void AllForStart()
     {
@@ -326,6 +329,10 @@ public class CarController : MonoBehaviour
 
     private IEnumerator DefaultZTurnRotationCoroutine()
     {
+        rigidbody.interpolation = RigidbodyInterpolation.None;
+
+        yield return new WaitForSeconds(0.2f);
+
         Quaternion defaultTurnVehicle = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
 
         _timeForTurnCoroutine = 0f;
@@ -337,6 +344,8 @@ public class CarController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, defaultTurnVehicle, _timeForTurnCoroutine);
             yield return null;
         }
+
+        rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
         yield return null;
     }
 

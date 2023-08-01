@@ -56,7 +56,8 @@ public class GameManager : MonoBehaviour
             if (carControllerAI != null)
             {
                 //carControllerAI.defaultTarget = allEnemyCars[UnityEngine.Random.Range(0, allEnemyCars.Count)].transform;
-                carControllerAI.defaultTarget = _playerPrefab.transform;
+                //carControllerAI.defaultTarget = _playerPrefab.transform;
+                carControllerAI.defaultTarget = playerGameObject.transform;
             }
 
             MeshCollider enemyMeshColliderComponent = enemyCarPrefab.GetComponentInChildren<MeshCollider>();

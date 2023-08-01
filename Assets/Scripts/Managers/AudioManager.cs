@@ -6,6 +6,9 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance { get; private set; }
 
     private const string NamePlayScene = "PlayScene";
+    private const string NamePlayScene2 = "PlayScene2";
+    private const string NamePlayScene3 = "PlayScene3";
+    private const string NamePlayScene4 = "PlayScene4";
     private const string NameTestPlayScene = "TestPlayScene";
 
     private string _currentSceneName;
@@ -44,7 +47,7 @@ public class AudioManager : MonoBehaviour
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         _currentSceneName = scene.name;
-        if (_currentSceneName == NamePlayScene || _currentSceneName == NameTestPlayScene)
+        if (_currentSceneName == NamePlayScene || _currentSceneName == NameTestPlayScene || _currentSceneName == NamePlayScene2 || _currentSceneName == NamePlayScene3 || _currentSceneName == NamePlayScene4)
         {
             if (!_isBattleScene)
             {

@@ -10,6 +10,8 @@ public class FollowCamera : MonoBehaviour
 
     public Vector3 zoom = new Vector3(0, 0, 0);
 
+    public Vector3 startFollowPosition = new Vector3(-17f, 16, 0);
+
     private Vector3 offset;
     private Vector3 velocity = Vector3.zero;
 
@@ -24,15 +26,20 @@ public class FollowCamera : MonoBehaviour
     {
         target = GameManager.Instance.playerGameObject.transform;
 
+        transform.position = target.position + startFollowPosition;
+
         offset = transform.position - target.transform.position;   // Vector operation
     }
 
     void Update()
     {
+        
         if (GameManager.Instance.isGameOver == true)
         {
             return;
         }
+        
+        
         // Define a target position relative to the the target transform
         Vector3 targetPosition = target.position + offset + zoom;
 

@@ -675,7 +675,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -916,7 +916,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1138,13 +1138,13 @@ MonoBehaviour:
   _selectClip: {fileID: 8300000, guid: d46323e22e74e46baa241cbf48c85671, type: 3}
   _swapModelClip: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
   _playerDataModels:
-  - model: {fileID: 1511334124429455304, guid: 9a87711dd077f354e81355ff51dc2452, type: 3}
-    price: 0
-    isPurchased: 1
-    isSelected: 0
   - model: {fileID: 7419918772036100495, guid: 87bb4d597e285224683ff4a8b21c9e13, type: 3}
     price: 0
     isPurchased: 1
+    isSelected: 0
+  - model: {fileID: 3907141030046309025, guid: 9a87711dd077f354e81355ff51dc2452, type: 3}
+    price: 1
+    isPurchased: 0
     isSelected: 0
   - model: {fileID: 6357916650829452903, guid: 2230ba695f5ea204184e1a9f22c5d9ae, type: 3}
     price: 100
@@ -1332,7 +1332,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1602,7 +1602,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535

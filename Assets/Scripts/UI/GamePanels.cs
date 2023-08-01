@@ -31,7 +31,7 @@ public class GamePanels : MonoBehaviour
     private float _targetMaxSizeFontBalance = 85f;
     private float _targetMaxSizeFont = 110f;
     private float _targetMinSizeFont = 2f;
-    private float _increaseDuration = 0.5f;
+    private float _increaseDuration = 0.8f;
     private float _decreaseDuration = 0.35f;
     private float _fadeOutDuration = 0.35f;
 

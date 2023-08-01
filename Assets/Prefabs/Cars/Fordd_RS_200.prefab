@@ -1398,7 +1398,7 @@ MonoBehaviour:
   _wheelCollider: {fileID: 6255448056176291663}
   _pushTurnForce: 4
   _pushDurationForce: 0.5
-  _smoothTurnDuration: 3
+  _smoothTurnDuration: 5
 --- !u!114 &3871929062323944101
 MonoBehaviour:
   m_ObjectHideFlags: 0

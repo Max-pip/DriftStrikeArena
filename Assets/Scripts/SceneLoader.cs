@@ -8,7 +8,7 @@ public class SceneLoader : MonoBehaviour
     private string _nameMainMenuScene = "MainMenuScene";
     private string _nameSelectPlayerScene = "SelectPlayerScene";
     private string _nameSelectArenaScene = "SelectArenaScene";
-    public string nameCurrentPlayScene = "PlayScene";
+    //public string nameCurrentPlayScene = "PlayScene";
 
     public void Restart()
     {

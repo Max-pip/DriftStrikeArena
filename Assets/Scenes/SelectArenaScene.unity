@@ -675,7 +675,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -810,7 +810,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1128,9 +1128,19 @@ MonoBehaviour:
     price: 0
     isPurchased: 1
     isSelected: 0
-  - model: {fileID: 7618588136954251816, guid: 273ddbc649b9c604f9b3e188ce7556d4, type: 3}
-    arenaName: TestPlayScene
-    price: 0
+  - model: {fileID: 4382469018021878544, guid: cd691dd6f53d43c4fa8dd0cd69eda042, type: 3}
+    arenaName: PlayScene2
+    price: 1
+    isPurchased: 0
+    isSelected: 0
+  - model: {fileID: 1583868397037053049, guid: 07069ab7d4574a745a533d9b5ff45f5b, type: 3}
+    arenaName: PlayScene3
+    price: 1
+    isPurchased: 0
+    isSelected: 0
+  - model: {fileID: 1278615759252138391, guid: 5e921461b5dc3f24389940736454f9c1, type: 3}
+    arenaName: PlayScene4
+    price: 1
     isPurchased: 0
     isSelected: 0
 --- !u!1 &1186724031
@@ -1224,7 +1234,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1494,7 +1504,7 @@ MonoBehaviour:
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
