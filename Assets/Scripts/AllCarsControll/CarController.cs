@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,10 +6,15 @@ using UnityEngine;
 public class CarController : MonoBehaviour
 {
     #region Parameters
+    private const string PlayerTag = "Player";
+    private const string AccelerationString = "acceleration";
+    private const string BreakingString = "breaking";
+
     public Rigidbody rigidbody;
 
     [SerializeField] private AudioSource _carAudio;
     [SerializeField] private AudioClip _fallingCarClip;
+    public static Action<string> onTouchedAccelerationPlatform;
 
     [Header("Update Parameters")]
     [SerializeField] private float _updateAccel = 15.0f;         // In meters/second2 
@@ -400,10 +406,11 @@ public class CarController : MonoBehaviour
     
     private IEnumerator AddAccelerationCoroutine()
     {
-        if (AudioManager.Instance != null)
+        if (tag == PlayerTag)
         {
-            _carAudio.PlayOneShot(AudioManager.Instance.accelerationClip);
+            onTouchedAccelerationPlatform?.Invoke(AccelerationString);
         }
+
         initialTopSpeed = _updateTopSpeed;
         initialAccel = _updateAccel;
         initialRotate = updateRotate;
@@ -425,10 +432,11 @@ public class CarController : MonoBehaviour
 
     private IEnumerator ReduceAccelerationCoroutine()
     {
-        if (AudioManager.Instance != null)
+        if (tag == PlayerTag)
         {
-            _carAudio.PlayOneShot(AudioManager.Instance.breakingClip);
+            onTouchedAccelerationPlatform?.Invoke(BreakingString);
         }
+
         initialTopSpeed = _updateTopSpeed;
         initialAccel = _updateAccel;
 

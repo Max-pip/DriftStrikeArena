@@ -1221,6 +1221,8 @@ MonoBehaviour:
   _musicSource: {fileID: 505527409}
   _startClip: {fileID: 8300000, guid: b95f425f538326b43b6c85e0960d8488, type: 3}
   _playClip: {fileID: 8300000, guid: af6820b68bf376a43998c5f50d5cde34, type: 3}
+  accelerationClip: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
+  breakingClip: {fileID: 8300000, guid: 5fab025eb1fe2de4995063a6bea27bd5, type: 3}
 --- !u!1 &2064999959
 GameObject:
   m_ObjectHideFlags: 0

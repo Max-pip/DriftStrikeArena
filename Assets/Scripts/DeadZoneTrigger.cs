@@ -7,7 +7,6 @@ public class DeadZoneTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"{other.gameObject.name}");
         if (other.CompareTag("Player") && GameManager.Instance.isGameOver == false)
         {
             onLosePanel?.Invoke();
