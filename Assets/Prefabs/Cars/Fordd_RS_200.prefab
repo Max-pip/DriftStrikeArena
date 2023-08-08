@@ -933,7 +933,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -8846944783245034660, guid: 34474a52d33c4b24fb375445a439cc22,
     type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1437,7 +1437,7 @@ Transform:
   - {fileID: 4505357297426474718}
   - {fileID: 8452240262838957361}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &5953744424909357760
 Rigidbody:
@@ -1481,7 +1481,6 @@ MonoBehaviour:
   rigidbody: {fileID: 5953744424909357760}
   _carAudio: {fileID: 941877624376623676}
   _fallingCarClip: {fileID: 8300000, guid: a235d590ef2a04d1b85b61ef4c21337c, type: 3}
-  _accelerationClip: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
   _updateAccel: 15
   _updateGripX: 12
   _updateGripZ: 3

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6239661459194696644}
   - component: {fileID: 6765946959741981549}
   - component: {fileID: 6394786906566764261}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wheel_FR_Mesh_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 8505921771638124944}
   - component: {fileID: 8007938863536524761}
   - component: {fileID: 306992565664971799}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wheel_RL_Mesh_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1143776211453566676}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CarBody_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,6 +198,149 @@ Transform:
   m_Father: {fileID: 6135661103745925642}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3324782140001304340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6537065363781499278}
+  - component: {fileID: 8354301592494305565}
+  - component: {fileID: 2331799956404859210}
+  m_Layer: 7
+  m_Name: PlayerAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6537065363781499278
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324782140001304340}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6135661103745925642}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8354301592494305565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324782140001304340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce19336d79941b44a880cf1bdb56ae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerAudioSource: {fileID: 2331799956404859210}
+--- !u!82 &2331799956404859210
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3324782140001304340}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -8846944783245034660, guid: 34474a52d33c4b24fb375445a439cc22,
+    type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &3652830575169404505
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +352,7 @@ GameObject:
   - component: {fileID: 1564219399658675294}
   - component: {fileID: 5481740725932434953}
   - component: {fileID: 8331860309960751327}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wheel_FL_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8287759208792564947}
   - component: {fileID: 3916711851358392125}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RightTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +577,7 @@ GameObject:
   - component: {fileID: 187574725115236547}
   - component: {fileID: 2736819245433080663}
   - component: {fileID: 3238121478585463396}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Fiatt_131
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -457,6 +600,7 @@ Transform:
   - {fileID: 1828978828322369998}
   - {fileID: 6218137256634591563}
   - {fileID: 8858796153063274196}
+  - {fileID: 6537065363781499278}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -689,7 +833,7 @@ GameObject:
   m_Component:
   - component: {fileID: 187696339025794208}
   - component: {fileID: 22334890091311150}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LeftTrail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -826,7 +970,7 @@ GameObject:
   - component: {fileID: 8858796153063274196}
   - component: {fileID: 2590015653344472700}
   - component: {fileID: 1010553322514717087}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TriggerDefaultTurn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -892,7 +1036,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5359523654893457786}
   - component: {fileID: 4748924593124789619}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wheel_RR_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -965,7 +1109,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3045682335153259125}
   - component: {fileID: 164623961253417357}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wheel_RL_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,7 +1184,7 @@ GameObject:
   - component: {fileID: 7107175769211071757}
   - component: {fileID: 1716522623616158143}
   - component: {fileID: 7833146658335934338}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body_Mesh_3
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1146,7 +1290,7 @@ GameObject:
   - component: {fileID: 1908204093959712819}
   - component: {fileID: 7989100512023906076}
   - component: {fileID: 5389980646797382290}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TriggerPushback
   m_TagString: TriggerPushback
   m_Icon: {fileID: 0}
@@ -1310,7 +1454,7 @@ GameObject:
   - component: {fileID: 5265885173115853923}
   - component: {fileID: 7455019326748407449}
   - component: {fileID: 61764793903573947}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wheel_RR_Mesh_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1393,7 +1537,7 @@ GameObject:
   - component: {fileID: 8817649107022562917}
   - component: {fileID: 4176821424964775024}
   - component: {fileID: 3210613647575490374}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wheel_FR_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1478,7 +1622,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1828978828322369998}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wheels_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1515,7 +1659,7 @@ GameObject:
   - component: {fileID: 2772625155260556223}
   - component: {fileID: 2384941107055603494}
   - component: {fileID: 2010490806415706865}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: wheel_FL_Mesh_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
