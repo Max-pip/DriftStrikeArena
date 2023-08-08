@@ -1,32 +1,29 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    [SerializeField] Rigidbody rigidbody;
-    private float _rotationSpeed = 4f;
+    [SerializeField] private GameObject _speedEffectObj;
 
-    public IEnumerator DefaultZTurnRotationCoroutine()
+    private void OnEnable()
     {
-        yield return new WaitForSeconds(0.1f);
+        AccelerationPlatform.onAddedAcceleration += TestMethod;      
+    }
 
-        Quaternion targetRotation = Quaternion.Euler(0f, transform.eulerAngles.y, 0f);
+    private void OnDisable()
+    {
+        AccelerationPlatform.onAddedAcceleration -= TestMethod;
+    }
 
-        rigidbody.useGravity = false;
-        //rigidbody = true;
-        transform.position += Vector3.up * 3;
+    private void TestMethod() 
+    {
+        StartCoroutine(TestCoroutine());
+    }    
 
-
-        while (Quaternion.Angle(transform.rotation, targetRotation) > 5f) // Використовуємо метод Quaternion.Angle
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-
-            yield return null;
-        }
-
-
-        //transform.rotation = targetRotation;
-        rigidbody.useGravity = true;
+    private IEnumerator TestCoroutine()
+    {
+        _speedEffectObj.SetActive(true);
+        yield return new WaitForSeconds(2);
+        _speedEffectObj.SetActive(false);
     }
 }

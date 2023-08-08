@@ -14,6 +14,7 @@ TagManager:
   - PurchaseButton
   - SelectButton
   - Ground
+  - AccelPlatform
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Post-processing
   - Vehicle
   - 
   - 

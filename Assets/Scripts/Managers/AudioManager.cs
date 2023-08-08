@@ -18,9 +18,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _soundSource;
     [SerializeField] private AudioSource _musicSource;
 
-    [Header("Audio clips")]
+    [Header("Scene clips")]
     [SerializeField] private AudioClip _startClip;
     [SerializeField] private AudioClip _playClip;
+
+    [Header("Car clips")]
+    public AudioClip accelerationClip;
+    public AudioClip breakingClip;
 
     private void Awake()
     {

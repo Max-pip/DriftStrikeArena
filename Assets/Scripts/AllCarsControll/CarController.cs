@@ -10,15 +10,27 @@ public class CarController : MonoBehaviour
     [SerializeField] private AudioSource _carAudio;
     [SerializeField] private AudioClip _fallingCarClip;
 
-    [Header("Initial Parameters")]
-    [SerializeField] private float _initialAccel = 15.0f;         // In meters/second2 
-    [SerializeField] private float _initialGripX = 12.0f;         // In meters/second2
-    [SerializeField] private float _initialGripZ = 3.0f;          // In meters/second2
-    [SerializeField] private float _initialRotVel = 0.8f;         // Ratio of forward velocity transfered on rotation
-    [SerializeField] private float _TopSpeed = 30.0f;      // In meters/second
-    public float initialRotate = 170;                            // In degree/second
+    [Header("Update Parameters")]
+    [SerializeField] private float _updateAccel = 15.0f;         // In meters/second2 
+    [SerializeField] private float _updateGripX = 12.0f;         // In meters/second2
+    [SerializeField] private float _updateGripZ = 3.0f;          // In meters/second2
+    [SerializeField] private float _updateRotVel = 0.8f;         // Ratio of forward velocity transfered on rotation
+    [SerializeField] private float _updateTopSpeed = 30.0f;      // In meters/second
+    public float updateRotate = 170;                            // In degree/second
 
-    //Center of mass
+    [Header("Acceleration Parameters")]
+    [SerializeField] private float _boostAccel = 25;
+    [SerializeField] private float _boostMaxSpeed = 45;
+    [SerializeField] private float _boostRotate = 300;
+    [SerializeField] private float _reduceAccel = 10;
+    [SerializeField] private float _reduceMaxSpeed = 20;
+    private bool _isChangingAccel;
+    float initialTopSpeed;
+    float initialAccel;
+    float initialRotate;
+
+
+    [Header("Center of mass")]
     [SerializeField] private Vector3 _centerOfMass = new Vector3(0f, -1f, 0f);
 
     [Header("Rotation Parameters")]
@@ -54,6 +66,7 @@ public class CarController : MonoBehaviour
     private float _gripZ;
     private float _rotate;
     private float _rotateVelocity;
+    private float _topSpeed;
     private float _slip;     // The value used based on Slip curves
 
     // For determining drag direction
@@ -95,13 +108,16 @@ public class CarController : MonoBehaviour
     
     void FixedUpdate()
     {
-        
-        _accel = _initialAccel;
-        _rotate = initialRotate;
-        _gripX = _initialGripX;
-        _gripZ = _initialGripZ;
-        _rotateVelocity = _initialRotVel;
+           
+        _accel = _updateAccel;
+        _gripX = _updateGripX;
+        _gripZ = _updateGripZ;
+        _rotate = updateRotate;
+        _rotateVelocity = _updateRotVel;
+        _topSpeed = _updateTopSpeed;
         rigidbody.angularDrag = _angularDragGround;
+        
+
 
         AdjustmentOfSlope();
 
@@ -172,7 +188,7 @@ public class CarController : MonoBehaviour
             _rotate = _pVelocityVector.magnitude / _maxRotationSpeed * _rotate;
         }
 
-        if (_rotate > initialRotate) _rotate = initialRotate;
+        if (_rotate > updateRotate) _rotate = updateRotate;
 
         // Calculate grip based on sideway velocity in hysteresis curve
         if (!_isSlip)
@@ -237,8 +253,8 @@ public class CarController : MonoBehaviour
     private void MaxSpeed()
     {
         // Top speed
-        if (_velocityVector.z > _TopSpeed) _velocityVector.z = _TopSpeed;
-        else if (_velocityVector.z < -_TopSpeed) _velocityVector.z = -_TopSpeed;
+        if (_velocityVector.z > _topSpeed) _velocityVector.z = _topSpeed;
+        else if (_velocityVector.z < -_topSpeed) _velocityVector.z = -_topSpeed;
     }
 
     // Executing the queued inputs
@@ -359,7 +375,7 @@ public class CarController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("DeadZone"))
+        if (other.CompareTag("DeadZone") && _myMeshCollider != null)
         {
             Destroy(_myMeshCollider);
             if (MainManager.Instance.isSoundOn)
@@ -367,5 +383,66 @@ public class CarController : MonoBehaviour
                 _carAudio.PlayOneShot(_fallingCarClip);
             }
         }
+
+        if (other.CompareTag("AccelPlatform"))
+        {
+            float angle = Vector3.Angle(transform.forward, other.transform.forward);
+            if (angle <= 90 && !_isChangingAccel)
+            {
+                StartCoroutine(AddAccelerationCoroutine());
+            } else if (angle >= 115 && !_isChangingAccel)
+            {
+                StartCoroutine(ReduceAccelerationCoroutine());
+            } else { }
+        }
     }
+
+    
+    private IEnumerator AddAccelerationCoroutine()
+    {
+        if (AudioManager.Instance != null)
+        {
+            _carAudio.PlayOneShot(AudioManager.Instance.accelerationClip);
+        }
+        initialTopSpeed = _updateTopSpeed;
+        initialAccel = _updateAccel;
+        initialRotate = updateRotate;
+
+        _isChangingAccel = true;
+        _updateTopSpeed = _boostMaxSpeed;
+        _updateAccel = _boostAccel;
+        updateRotate = _boostRotate;
+
+        yield return new WaitForSeconds(2f);
+
+        _updateTopSpeed = initialTopSpeed;
+        _updateAccel = initialAccel;
+        updateRotate = initialRotate;
+        _isChangingAccel = false;  
+
+        yield return null;
+    }
+
+    private IEnumerator ReduceAccelerationCoroutine()
+    {
+        if (AudioManager.Instance != null)
+        {
+            _carAudio.PlayOneShot(AudioManager.Instance.breakingClip);
+        }
+        initialTopSpeed = _updateTopSpeed;
+        initialAccel = _updateAccel;
+
+        _isChangingAccel = true;
+        _updateTopSpeed = _reduceMaxSpeed;
+        _updateAccel = _reduceAccel;
+
+        yield return new WaitForSeconds(2f);
+
+        _updateTopSpeed = initialTopSpeed;
+        _updateAccel = initialAccel;
+        _isChangingAccel = false;
+
+        yield return null;
+    }
+    
 }

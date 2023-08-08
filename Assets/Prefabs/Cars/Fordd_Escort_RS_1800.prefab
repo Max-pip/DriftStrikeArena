@@ -630,7 +630,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3907141030046309025}
-  m_LocalRotation: {x: 0, y: -0.95105654, z: 0, w: 0.30901697}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -641,7 +641,7 @@ Transform:
   - {fileID: 1194843868690565123}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -144, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1382521295867778261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -657,12 +657,17 @@ MonoBehaviour:
   rigidbody: {fileID: 6585907816685448964}
   _carAudio: {fileID: 20791074457606166}
   _fallingCarClip: {fileID: 8300000, guid: a235d590ef2a04d1b85b61ef4c21337c, type: 3}
-  _initialAccel: 15
-  _initialGripX: 12
-  _initialGripZ: 3
-  _initialRotVel: 0.8
-  _TopSpeed: 30
-  initialRotate: 170
+  _updateAccel: 15
+  _updateGripX: 12
+  _updateGripZ: 3
+  _updateRotVel: 0.8
+  _updateTopSpeed: 30
+  updateRotate: 170
+  _boostAccel: 25
+  _boostMaxSpeed: 45
+  _boostRotate: 300
+  _reduceAccel: 5
+  _reduceMaxSpeed: 15
   _centerOfMass: {x: 0, y: -1, z: 0}
   _slipL:
     serializedVersion: 2
@@ -743,7 +748,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8846944783245034660, guid: 34474a52d33c4b24fb375445a439cc22,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: a235d590ef2a04d1b85b61ef4c21337c, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

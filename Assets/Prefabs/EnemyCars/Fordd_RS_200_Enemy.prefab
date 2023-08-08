@@ -1410,12 +1410,17 @@ MonoBehaviour:
   rigidbody: {fileID: 6512060400200656317}
   _carAudio: {fileID: 7023943925649141171}
   _fallingCarClip: {fileID: 8300000, guid: a235d590ef2a04d1b85b61ef4c21337c, type: 3}
-  _initialAccel: 15
-  _initialGripX: 12
-  _initialGripZ: 3
-  _initialRotVel: 0.8
-  _TopSpeed: 30
-  initialRotate: 170
+  _updateAccel: 15
+  _updateGripX: 12
+  _updateGripZ: 3
+  _updateRotVel: 0.8
+  _updateTopSpeed: 30
+  updateRotate: 170
+  _boostAccel: 25
+  _boostMaxSpeed: 45
+  _boostRotate: 300
+  _reduceAccel: 5
+  _reduceMaxSpeed: 15
   _centerOfMass: {x: 0, y: -1, z: 0}
   _slipL:
     serializedVersion: 2
@@ -1500,7 +1505,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -8846944783245034660, guid: 34474a52d33c4b24fb375445a439cc22,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: a235d590ef2a04d1b85b61ef4c21337c, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

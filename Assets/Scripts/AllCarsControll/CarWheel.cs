@@ -17,7 +17,7 @@ public class CarWheel : MonoBehaviour
     void Update()
     {
         // Rotate this according to the rotation input value
-        float rotate = _carController.TurnValue * _carController.initialRotate * _modifierForRotate;
+        float rotate = _carController.TurnValue * _carController.updateRotate * _modifierForRotate;
         transform.localEulerAngles = _initRotation + new Vector3(0f, rotate, 0f);
     }
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
 {
+    [SerializeField] private GameObject _speedEffectObj;
+
     public Transform target;
 
     [Tooltip("Approximately the time it will take to reach the target.")]
@@ -21,6 +23,16 @@ public class FollowCamera : MonoBehaviour
 
     private Vector3 _originalPos;
     private Quaternion _originalRotation;
+
+    private void OnEnable()
+    {
+        AccelerationPlatform.onAddedAcceleration += SpeedEffect;
+    }
+
+    private void OnDisable()
+    {
+        AccelerationPlatform.onAddedAcceleration -= SpeedEffect;
+    }
 
     void Start()
     {
@@ -47,6 +59,7 @@ public class FollowCamera : MonoBehaviour
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
     }
 
+    #region CameraShake
     public void ShakeCamera()
     {
         _originalPos = transform.position;
@@ -74,4 +87,21 @@ public class FollowCamera : MonoBehaviour
         transform.position = _originalPos;
         transform.rotation = _originalRotation;
     }
+    #endregion
+
+    #region SpeedEffect
+
+    private void SpeedEffect()
+    {
+        StartCoroutine(SpeedEffectCoroutine());
+    }
+
+    private IEnumerator SpeedEffectCoroutine()
+    {
+        _speedEffectObj.SetActive(true);
+        yield return new WaitForSeconds(2);
+        _speedEffectObj.SetActive(false);
+    }
+
+    #endregion
 }

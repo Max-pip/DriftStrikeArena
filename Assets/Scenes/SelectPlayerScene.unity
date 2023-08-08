@@ -1146,6 +1146,18 @@ MonoBehaviour:
     price: 1
     isPurchased: 0
     isSelected: 0
+  - model: {fileID: 5274247056521185542, guid: 60a63a85c79b29d4a881b9078be7f85f, type: 3}
+    price: 2
+    isPurchased: 0
+    isSelected: 0
+  - model: {fileID: 4929585784735800378, guid: 4f431455223e33d40adf97ccc444c09e, type: 3}
+    price: 3
+    isPurchased: 0
+    isSelected: 0
+  - model: {fileID: 7319520164630613907, guid: b99a397b28d8eb94489704c0e02f856b, type: 3}
+    price: 5
+    isPurchased: 0
+    isSelected: 0
   - model: {fileID: 6357916650829452903, guid: 2230ba695f5ea204184e1a9f22c5d9ae, type: 3}
     price: 100
     isPurchased: 0
