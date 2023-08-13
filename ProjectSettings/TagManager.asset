@@ -15,6 +15,7 @@ TagManager:
   - SelectButton
   - Ground
   - AccelPlatform
+  - Hammer
   layers:
   - Default
   - TransparentFX

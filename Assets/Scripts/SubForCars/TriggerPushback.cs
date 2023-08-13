@@ -36,7 +36,7 @@ public class TriggerPushback : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Vector3 rigidbodyForward = transform.forward;
+        Vector3 forwardDirection = transform.forward;
 
         CarController enemyCarController = other.GetComponentInParent<CarController>();
         Rigidbody enemyRigidbody = other.GetComponentInParent<Rigidbody>();
@@ -48,8 +48,7 @@ public class TriggerPushback : MonoBehaviour
             _damageModifier = enemyCarController.ReceiveDamage;
         }
 
-
-        if (enemyRigidbody != null)
+        if (enemyRigidbody != null && other.tag != "Hammer")
         {
             if (_transformParent.CompareTag("Player") && !_isSlowMotionRunning)
             {
@@ -61,7 +60,7 @@ public class TriggerPushback : MonoBehaviour
                 }
             }
             GameObject explosion = Instantiate(GameManager.Instance.explosionPrefab, transform.position, transform.rotation);
-            Vector3 forceDirection = (rigidbodyForward + new Vector3(0, 2f, 0)).normalized;
+            Vector3 forceDirection = (forwardDirection + new Vector3(0, 2f, 0)).normalized;
             enemyRigidbody.AddForce(forceDirection * _damageModifier, ForceMode.Impulse); 
 
             if (MainManager.Instance.isSoundOn)
@@ -79,7 +78,7 @@ public class TriggerPushback : MonoBehaviour
 
         _followCamera.zoom = new Vector3(10, -10, 0);
 
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.1f);
 
         Time.timeScale = 0.2f;
 

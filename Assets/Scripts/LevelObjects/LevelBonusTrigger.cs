@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestScriptTrigger : MonoBehaviour
+public class LevelBonusTrigger : MonoBehaviour
 {
     private const string CarLayerName = "Vehicle";
     private const string TriggerPushbackTag = "TriggerPushback";
 
     [SerializeField] private HomingRocket _prefabHomingRocket;
-    [SerializeField] private GameObject _target;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -16,9 +15,9 @@ public class TestScriptTrigger : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer(CarLayerName) && carMesh != null)
         {
-            //int randomIndex = Random.Range(0, GameManager.Instance.allEnemyCars.Count);
+            int randomIndex = Random.Range(0, GameManager.Instance.allEnemyCars.Count);
             HomingRocket homingRocket = Instantiate(_prefabHomingRocket, transform.position, _prefabHomingRocket.transform.rotation);
-            homingRocket.Initialization(_target);
+            homingRocket.Initialization(GameManager.Instance.allEnemyCars[randomIndex]);
         }
         Destroy(gameObject, 0.2f);
     }
