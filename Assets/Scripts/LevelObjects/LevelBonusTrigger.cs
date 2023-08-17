@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelBonusTrigger : MonoBehaviour
@@ -15,9 +13,9 @@ public class LevelBonusTrigger : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer(CarLayerName) && carMesh != null)
         {
-            int randomIndex = Random.Range(0, GameManager.Instance.allEnemyCars.Count);
+            int randomIndex = Random.Range(0, GameManager.Instance.allCars.Count);
             HomingRocket homingRocket = Instantiate(_prefabHomingRocket, transform.position, _prefabHomingRocket.transform.rotation);
-            homingRocket.Initialization(GameManager.Instance.allEnemyCars[randomIndex]);
+            homingRocket.Initialization(GameManager.Instance.allCars[randomIndex]);
         }
         Destroy(gameObject, 0.2f);
     }

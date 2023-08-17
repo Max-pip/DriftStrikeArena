@@ -10,20 +10,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject _playerPrefab;
 
-    /*
-    public GameObject PlayerPrafab
-    {
-        private get { return _playerPrefab; }
-        set { _playerPrefab = value; }
-    }
-    */
-
     [SerializeField] private Transform _playerStartPosition;
 
     public GameObject explosionPrefab;
     public GameObject playerGameObject { get; private set; }
 
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
+
+    public List<GameObject> allCars = new List<GameObject>();
 
     public List<GameObject> allEnemyCars = new List<GameObject>();
 
@@ -45,6 +39,8 @@ public class GameManager : MonoBehaviour
 
         playerGameObject = Instantiate(_playerPrefab, _playerStartPosition.position, Quaternion.identity);
 
+        allCars.Add(playerGameObject);
+
         for (int i = 0; i < _spawnPoints.Count; i++)
         {
             int randomIndex = UnityEngine.Random.Range(0, _enemyPrefabs.Count);
@@ -55,8 +51,6 @@ public class GameManager : MonoBehaviour
             CarControllerAI carControllerAI = enemyCarPrefab.GetComponent<CarControllerAI>();
             if (carControllerAI != null)
             {
-                //carControllerAI.defaultTarget = allEnemyCars[UnityEngine.Random.Range(0, allEnemyCars.Count)].transform;
-                //carControllerAI.defaultTarget = _playerPrefab.transform;
                 carControllerAI.defaultTarget = playerGameObject.transform;
             }
 
@@ -69,6 +63,7 @@ public class GameManager : MonoBehaviour
             }
 
             allEnemyCars.Add(enemyCarPrefab);
+            allCars.Add(enemyCarPrefab);
         }
     }
 }

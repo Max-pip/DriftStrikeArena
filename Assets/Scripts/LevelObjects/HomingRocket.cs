@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine.VFX;
 
 public class HomingRocket : MonoBehaviour
 {
@@ -12,45 +12,61 @@ public class HomingRocket : MonoBehaviour
     [SerializeField] private GameObject _targetObject;
     private Collider _myCollider;
 
+    [Header("Explosion paramenters")]
+    [SerializeField] private VisualEffect _explosionEffect;
+    [SerializeField] private int _maxColliderAmount = 15;
+    [SerializeField] private float _radiusExplosion = 10f;
+    [SerializeField] private LayerMask _carLayer;
+    [SerializeField] private LayerMask _blockExplosionLayer;
+    [SerializeField] private float _explosiveForce;
+    private Collider[] _hitsArray; 
+
     public void Initialization(GameObject targetObject) 
     {
         _targetObject = targetObject;
-        
-    }
-
-    private void Start()
-    {
         _myCollider = GetComponentInChildren<Collider>();
         _myCollider.enabled = false;
-        StartCoroutine(PersecutionOfTargetCoroutine());        
+        _hitsArray = new Collider[_maxColliderAmount];
+        StartCoroutine(PersecutionOfTargetCoroutine());
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, _explosiveForce);
     }
 
     private IEnumerator PersecutionOfTargetCoroutine()
     {
         float duration = 1f;
-        float normalizedTime = 0;
+        float time = 0;
 
-        while (normalizedTime <= duration )
+        while (time <= duration )
         {
             _rb.velocity = transform.forward * _speed;
-            normalizedTime += Time.deltaTime;
+            time += Time.deltaTime;
 
             yield return null;
         }
 
         _myCollider.enabled = true;
-        _speed *= 2;
-        _rotationSpeed *= 2;
+        _speed *= 2.5f;
+        _rotationSpeed *= 2.5f;
 
-        while (true)
+        float liveDuration = 4;
+        time = 0f;
+        while (time <= liveDuration)
         {
+            time += Time.deltaTime;
             _rb.velocity = transform.forward * _speed;
 
             RotateRocket();
         
             yield return null;
         }
-        
+
+        Explosion();
+        Destroy(gameObject, 0.1f);
     }
 
     private void RotateRocket()
@@ -66,7 +82,27 @@ public class HomingRocket : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer(CarLayerName))
         {
-            Destroy(gameObject);
+            Explosion();
+            Destroy(gameObject, 0.1f);
         }
+    }
+
+    private void Explosion()
+    {
+        int hits = Physics.OverlapSphereNonAlloc(transform.position, _radiusExplosion, _hitsArray, _carLayer);
+
+        for (int i = 0; i < hits; i++)
+        {
+            if (_hitsArray[i].TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
+            {
+                float distance = Vector3.Distance(transform.position, _hitsArray[i].transform.position);
+
+                if (!Physics.Raycast(transform.position, (_hitsArray[i].transform.position - transform.position).normalized, distance, _blockExplosionLayer))
+                {
+                    rigidbody.AddExplosionForce(_explosiveForce, transform.position, _radiusExplosion, 2f);
+                }
+            }
+        }
+        Instantiate(_explosionEffect, transform.position, Quaternion.identity);
     }
 }

@@ -108,7 +108,6 @@ public class CarController : MonoBehaviour
     void Update()
     {
         Debug.DrawRay(transform.position, rigidbody.velocity / 2, Color.green);
-        Debug.DrawRay(transform.position, -transform.up * (_distToGround + (_wheelCollider.radius * 1.5f)), Color.red);
     }
 
     

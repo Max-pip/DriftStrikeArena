@@ -7,9 +7,11 @@ public class TestScriptTrigger : MonoBehaviour
     private const string CarLayerName = "Vehicle";
     private const string TriggerPushbackTag = "TriggerPushback";
 
+    [SerializeField] private Mine _prafabMine;
     [SerializeField] private HomingRocket _prefabHomingRocket;
     [SerializeField] private GameObject _target;
 
+    /*
     private void OnTriggerEnter(Collider other)
     {
         MeshCollider carMesh = other.GetComponent<MeshCollider>();
@@ -22,4 +24,19 @@ public class TestScriptTrigger : MonoBehaviour
         }
         Destroy(gameObject, 0.2f);
     }
+    */
+
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        MeshCollider carMesh = other.GetComponent<MeshCollider>();
+
+        if (other.gameObject.layer == LayerMask.NameToLayer(CarLayerName) && carMesh != null)
+        {
+            Mine mine = Instantiate(_prafabMine, transform.position, Quaternion.identity);
+            mine.Initialization();
+        }
+        Destroy(gameObject, 0.1f);
+    }
+    
 }
