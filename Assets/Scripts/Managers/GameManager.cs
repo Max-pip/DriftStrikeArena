@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<GameObject> _enemyPrefabs = new List<GameObject>();
 
+    private BonusSpawn _bonusSpawn;
+
     private void Awake()
     {
         Instance = this;
@@ -64,6 +66,12 @@ public class GameManager : MonoBehaviour
 
             allEnemyCars.Add(enemyCarPrefab);
             allCars.Add(enemyCarPrefab);
+        }
+
+        _bonusSpawn = FindAnyObjectByType<BonusSpawn>();
+        if (_bonusSpawn != null)
+        {
+            _bonusSpawn.Initialization();
         }
     }
 }

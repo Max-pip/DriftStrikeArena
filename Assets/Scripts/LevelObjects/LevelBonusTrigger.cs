@@ -1,11 +1,22 @@
+using System.Collections;
 using UnityEngine;
 
 public class LevelBonusTrigger : MonoBehaviour
 {
     private const string CarLayerName = "Vehicle";
-    private const string TriggerPushbackTag = "TriggerPushback";
+    private const string CutOffHeightReference = "_CutoffHeight";
 
     [SerializeField] private HomingRocket _prefabHomingRocket;
+    [SerializeField] private Mine _prefabMine;
+    [SerializeField] private Material _myMaterial;
+    private Material _materialLocal;
+
+    public void Initialization()
+    {
+        _materialLocal = new Material(_myMaterial);
+        _materialLocal = GetComponent<Renderer>().material;
+        _materialLocal.SetFloat(CutOffHeightReference, 3.5f);
+    } 
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,10 +24,45 @@ public class LevelBonusTrigger : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer(CarLayerName) && carMesh != null)
         {
-            int randomIndex = Random.Range(0, GameManager.Instance.allCars.Count);
-            HomingRocket homingRocket = Instantiate(_prefabHomingRocket, transform.position, _prefabHomingRocket.transform.rotation);
-            homingRocket.Initialization(GameManager.Instance.allCars[randomIndex]);
+            int randomIndex = Random.Range(0, (GameManager.Instance.allCars.Count - 1));
+
+            switch (randomIndex)
+            {
+                case 0:
+                    HomingRocket homingRocket = Instantiate(_prefabHomingRocket, transform.position, _prefabHomingRocket.transform.rotation);
+                    homingRocket.Initialization(GameManager.Instance.allCars[randomIndex]);
+                    StartCoroutine(DissableCoroutine());
+                    break;
+                case 1:
+                    Mine mine = Instantiate(_prefabMine, transform.position, _prefabMine.transform.rotation);
+                    mine.Initialization();
+                    StartCoroutine(DissableCoroutine());
+                    break;
+                default:
+                    Mine mineDefault = Instantiate(_prefabMine, transform.position, _prefabMine.transform.rotation);
+                    mineDefault.Initialization();
+                    StartCoroutine(DissableCoroutine());
+                    break;
+            }
         }
-        Destroy(gameObject, 0.2f);
+    }
+
+    private IEnumerator DissableCoroutine()
+    {
+        float valueCutoffHeight = _materialLocal.GetFloat(CutOffHeightReference);
+        float duration = 0.4f;
+        float time = 0.05f;
+
+        while (time < duration)
+        {
+            float currentValue = Mathf.Lerp(valueCutoffHeight, 0, time / duration);
+            _materialLocal.SetFloat(CutOffHeightReference, currentValue);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        _materialLocal.SetFloat(CutOffHeightReference, 0);
+        Destroy(gameObject);
     }
 }
