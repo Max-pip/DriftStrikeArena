@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public bool isPaused = false;
     public bool isGameOver = false;
 
+    private FollowCamera _followCamera;
+
     [SerializeField] private GameObject _playerPrefab;
 
     [SerializeField] private Transform _playerStartPosition;
@@ -40,6 +42,9 @@ public class GameManager : MonoBehaviour
         _playerPrefab = MainManager.Instance.PlayerPrefab;
 
         playerGameObject = Instantiate(_playerPrefab, _playerStartPosition.position, Quaternion.identity);
+
+        _followCamera = FindAnyObjectByType<FollowCamera>();
+        _followCamera.Initialization(playerGameObject.transform);
 
         allCars.Add(playerGameObject);
 

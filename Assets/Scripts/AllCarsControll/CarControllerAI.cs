@@ -139,6 +139,7 @@ public class CarControllerAI : MonoBehaviour
         if (other.CompareTag("DeadZone"))
         {
             GameManager.Instance.allEnemyCars.Remove(this.gameObject);
+            GameManager.Instance.allCars.Remove(this.gameObject);
             if (GameManager.Instance.allEnemyCars.Count < 1 && GameManager.Instance.isGameOver == false)
             {
                 onWinPanel?.Invoke();

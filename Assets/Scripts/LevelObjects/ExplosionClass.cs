@@ -5,15 +5,18 @@ public class ExplosionClass : MonoBehaviour
 {
     protected const string CarLayerName = "Vehicle";
 
-    [SerializeField] private VisualEffect _explosionEffect;
+    protected Rigidbody _enemyRigidbody;
+    [SerializeField] private GameObject _explosionEffect;
+    
     [SerializeField] private LayerMask _carLayer;
     [SerializeField] private LayerMask _blockExplosionLayer;
     [SerializeField] private float _radiusExplosion = 10f;
     [SerializeField] private float _explosiveForce;
     private Collider[] _hitsArray = new Collider[15];
+    
 
-    public void Explosion()
-    {
+    public void ExplosionForce()
+    {      
         int hits = Physics.OverlapSphereNonAlloc(transform.position, _radiusExplosion, _hitsArray, _carLayer);
 
         for (int i = 0; i < hits; i++)
@@ -27,7 +30,12 @@ public class ExplosionClass : MonoBehaviour
                     rigidbody.AddExplosionForce(_explosiveForce, transform.position, _radiusExplosion, 2f);
                 }
             }
-        }
-        Instantiate(_explosionEffect, transform.position, Quaternion.identity);
+        }      
+    }
+
+    public void ExplosionEffect()
+    {
+        GameObject explosionEffectPrefab = Instantiate(_explosionEffect, transform.position, Quaternion.identity);
+        Destroy(explosionEffectPrefab, 1f);
     }
 }

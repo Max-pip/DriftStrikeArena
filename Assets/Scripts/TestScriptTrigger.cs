@@ -19,8 +19,7 @@ public class TestScriptTrigger : MonoBehaviour
         _materialLocal = GetComponent<Renderer>().material;
         _materialLocal.SetFloat(CutOffHeightReference, 3.5f);
     }
-
-    /*
+    
     private void OnTriggerEnter(Collider other)
     {
         MeshCollider carMesh = other.GetComponent<MeshCollider>();
@@ -31,12 +30,9 @@ public class TestScriptTrigger : MonoBehaviour
             homingRocket.Initialization(_target);
             StartCoroutine(DissableCoroutine());
         }
-    }
-    */
+    }    
     
-    
-
-    
+    /*
     private void OnTriggerEnter(Collider other)
     {
         MeshCollider carMesh = other.GetComponent<MeshCollider>();
@@ -48,6 +44,7 @@ public class TestScriptTrigger : MonoBehaviour
             StartCoroutine(DissableCoroutine());
         }
     }
+    */
     
 
     private IEnumerator DissableCoroutine()

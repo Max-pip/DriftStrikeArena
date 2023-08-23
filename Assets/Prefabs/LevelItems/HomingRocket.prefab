@@ -47,21 +47,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74870c186a889f2429a61fcd9f85697e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 4437875634722599669}
-  _speed: 10
-  _rotationSpeed: 80
-  _targetObject: {fileID: 0}
-  _explosionEffect: {fileID: 4701077547453397027, guid: da34ff5412bb6c04bace11285d5dfbd2,
+  _explosionEffect: {fileID: 5593984279875454005, guid: 55f1dd758d6107d45a1b1d0bbf74f2a1,
     type: 3}
-  _maxColliderAmount: 15
-  _radiusExplosion: 20
   _carLayer:
     serializedVersion: 2
     m_Bits: 128
   _blockExplosionLayer:
     serializedVersion: 2
     m_Bits: 1
+  _radiusExplosion: 20
   _explosiveForce: 4000000
+  _rb: {fileID: 4437875634722599669}
+  _speed: 10
+  _rotationSpeed: 80
+  _targetObject: {fileID: 0}
 --- !u!54 &4437875634722599669
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -70,7 +69,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751492722740578814}
   serializedVersion: 4
-  m_Mass: 17000
+  m_Mass: 9000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

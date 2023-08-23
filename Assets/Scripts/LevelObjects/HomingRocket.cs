@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class HomingRocket : ExplosionClass
 {
@@ -8,7 +7,9 @@ public class HomingRocket : ExplosionClass
     [SerializeField] private float _speed;
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private GameObject _targetObject;
+    //[SerializeField] private float _pointForce = 26000;
     private Collider _myCollider;
+    //private Rigidbody _enemyRigidbody;
 
     public void Initialization(GameObject targetObject) 
     {
@@ -47,7 +48,7 @@ public class HomingRocket : ExplosionClass
             yield return null;
         }
 
-        Explosion();
+        ExplosionEffect();
         Destroy(gameObject, 0.1f);
     }
 
@@ -62,10 +63,14 @@ public class HomingRocket : ExplosionClass
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer(CarLayerName))
+        _enemyRigidbody = collision.gameObject.GetComponentInParent<Rigidbody>();
+
+        if (collision.gameObject.layer == LayerMask.NameToLayer(CarLayerName) && _enemyRigidbody != null)
         {
-            Explosion();
+            ExplosionForce();
+            ExplosionEffect();
+            //_enemyRigidbody = null;
             Destroy(gameObject, 0.1f);
         }
-    }
+    }  
 }

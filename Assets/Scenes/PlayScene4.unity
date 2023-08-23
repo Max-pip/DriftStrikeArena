@@ -2632,7 +2632,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2e0ebf013287e459ad61e009dcee19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedEffectObj: {fileID: 70778855}
+  _speedEffectObj: {fileID: 8458034064465207842, guid: 5174745eec814bd41a93ec056e54b940,
+    type: 3}
   target: {fileID: 0}
   smoothTime: 0.2
   zoom: {x: 0, y: 0, z: 0}
@@ -4022,6 +4023,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4310235035573561565, guid: 5b85aae525a5f384bb8cf7b5279a4297,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5491908454841374540, guid: 5b85aae525a5f384bb8cf7b5279a4297,
         type: 3}

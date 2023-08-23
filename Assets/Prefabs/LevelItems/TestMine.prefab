@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4c345eeb8a7e44b80468f6128123af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosionEffect: {fileID: 4701077547453397027, guid: da34ff5412bb6c04bace11285d5dfbd2,
+  _explosionEffect: {fileID: 5593984279875454005, guid: 55f1dd758d6107d45a1b1d0bbf74f2a1,
     type: 3}
   _carLayer:
     serializedVersion: 2

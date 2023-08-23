@@ -1,11 +1,26 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class TestScript : MonoBehaviour
 {
-    public BonusSpawn bonusSpawn;
+    [SerializeField] private VisualEffect _testEffect;
 
     private void Start()
     {
-        bonusSpawn = FindAnyObjectByType<BonusSpawn>();
+        StartCoroutine(TestCoroutine());
+    }
+
+    private IEnumerator TestCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+
+        while (true)
+        {
+            VisualEffect testEffect = Instantiate(_testEffect, transform.position, Quaternion.identity);
+            Destroy(testEffect.gameObject, 1f);
+
+            yield return new WaitForSeconds(3f);
+        }
     }
 }

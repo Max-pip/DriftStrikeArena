@@ -24,6 +24,7 @@ public class FollowCamera : MonoBehaviour
     private Vector3 _originalPos;
     private Quaternion _originalRotation;
 
+    
     private void OnEnable()
     {
         AccelerationPlatform.onAddedAcceleration += SpeedEffect;
@@ -33,7 +34,16 @@ public class FollowCamera : MonoBehaviour
     {
         AccelerationPlatform.onAddedAcceleration -= SpeedEffect;
     }
+    
 
+    public void Initialization(Transform targetPlayer)
+    {
+        target = targetPlayer;
+        transform.position = target.position + startFollowPosition;
+        offset = transform.position - target.transform.position;
+    }
+
+    /*
     void Start()
     {
         target = GameManager.Instance.playerGameObject.transform;
@@ -42,6 +52,7 @@ public class FollowCamera : MonoBehaviour
 
         offset = transform.position - target.transform.position;   // Vector operation
     }
+    */
 
     void Update()
     {

@@ -1,14 +1,11 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class Mine : ExplosionClass
 {
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _pointForce = 6000f;
     private Collider _myCollider;
-
-    private Rigidbody _enemyRigidbody;
 
     public void Initialization()
     {
@@ -48,7 +45,8 @@ public class Mine : ExplosionClass
     {
         yield return new WaitForSeconds(0.2f);
         _enemyRigidbody.AddForceAtPosition(Vector3.up * _pointForce, transform.position, ForceMode.Impulse);
-        Explosion();
+        ExplosionForce();
+        ExplosionEffect();
     }
 
     private IEnumerator DelayActivationMineCoroutine()
