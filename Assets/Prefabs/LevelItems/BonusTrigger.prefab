@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4275640779393146914
 MeshFilter:
@@ -120,6 +120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefabHomingRocket: {fileID: 5199489943921664124, guid: e4b09e553f6089e43bbe0a68e9439a7b,
     type: 3}
-  _prefabMine: {fileID: 1546427098767688899, guid: 9ca62ccfbfd63b14e92e296f24f4d62b,
+  _prefabMine: {fileID: 4467682693498768978, guid: 618e1ce04eec6bf43bee506a922bdbd6,
     type: 3}
   _myMaterial: {fileID: 2100000, guid: e6cc9772d7e28604bb1d6767064f228a, type: 2}

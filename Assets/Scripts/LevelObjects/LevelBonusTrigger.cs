@@ -16,7 +16,6 @@ public class LevelBonusTrigger : MonoBehaviour
         _materialLocal = new Material(_myMaterial);
         _materialLocal = GetComponent<Renderer>().material;
         StartCoroutine(AppearanceCoroutine());
-        //_materialLocal.SetFloat(CutOffHeightReference, 3.5f);
     } 
 
     private void OnTriggerEnter(Collider other)
@@ -27,8 +26,6 @@ public class LevelBonusTrigger : MonoBehaviour
         {
             int randomPrefab = Random.Range(0, 2);
             int randomCarIndex = Random.Range(0, (GameManager.Instance.allCars.Count - 1));
-            Debug.Log($"randomPrefab {randomPrefab}. random index {randomCarIndex} from all cars count {GameManager.Instance.allCars.Count}");
-
 
             switch (randomPrefab)
             {

@@ -5,11 +5,11 @@ public class Mine : ExplosionClass
 {
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _pointForce = 6000f;
-    private Collider _myCollider;
+    private MeshCollider _myCollider;
 
     public void Initialization()
     {
-        _myCollider = GetComponent<Collider>();
+        _myCollider = GetComponent<MeshCollider>();
         StartCoroutine(DelayActivationMineCoroutine());
         FindGroundSpawnPosition();
     }

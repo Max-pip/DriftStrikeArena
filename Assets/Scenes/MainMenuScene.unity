@@ -605,10 +605,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e873204bf6c72954e99e2b6b25dc3dd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteMusicOn: {fileID: 21300000, guid: 4487209fdda91154da619301adb9e6c4, type: 3}
-  _spriteMusicOff: {fileID: 21300000, guid: 2dcc619a49088ab4599cc7e3b756a1ed, type: 3}
-  _spriteSoundOn: {fileID: 21300000, guid: a180731ab7211ec4ebd0f41648d49450, type: 3}
-  _spriteSoundOff: {fileID: 21300000, guid: 833d1e8a52d7c8b4f9e8200a08721bdd, type: 3}
+  _spriteMusicOn: {fileID: 21300000, guid: 2c7c8b255476abd43ba524d326592802, type: 3}
+  _spriteMusicOff: {fileID: 21300000, guid: cbf54abc4661920428a32900b4d4ced6, type: 3}
+  _spriteSoundOn: {fileID: 21300000, guid: 78a389b05807b0d48b3fb8d4bca61902, type: 3}
+  _spriteSoundOff: {fileID: 21300000, guid: ec2bf2b3a7654ef4985919018c134445, type: 3}
   _imageMusic: {fileID: 1159368424}
   _imageSound: {fileID: 2064999962}
   _buttonMusic: {fileID: 1159368423}
@@ -834,7 +834,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4487209fdda91154da619301adb9e6c4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c7c8b255476abd43ba524d326592802, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -967,7 +967,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d42cfe7bed8439c439378d1a7e76f4e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf8d36eb195e6b94c8643377f1055fad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1223,6 +1223,7 @@ MonoBehaviour:
   _playClip: {fileID: 8300000, guid: af6820b68bf376a43998c5f50d5cde34, type: 3}
   accelerationClip: {fileID: 8300000, guid: b99da9a57308d4ba1bee1cf1d9038376, type: 3}
   breakingClip: {fileID: 8300000, guid: 5fab025eb1fe2de4995063a6bea27bd5, type: 3}
+  _rewardClip: {fileID: 8300000, guid: 724131bc8a7f34041bb9f1701f0cb58d, type: 3}
 --- !u!1 &2064999959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,7 +1327,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a180731ab7211ec4ebd0f41648d49450, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 78a389b05807b0d48b3fb8d4bca61902, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

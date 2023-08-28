@@ -26,6 +26,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip accelerationClip;
     public AudioClip breakingClip;
 
+    [Header("Reward clip")]
+    [SerializeField] private AudioClip _rewardClip;
+
     private void Awake()
     {
         if (Instance != null)
@@ -74,6 +77,11 @@ public class AudioManager : MonoBehaviour
     public void ClickButtonSound(AudioClip audioClip)
     {
         _soundSource.PlayOneShot(audioClip);
+    }
+
+    public void GetRewardSound()
+    {
+        _soundSource.PlayOneShot(_rewardClip);
     }
 
     #region SessionAudioMethods

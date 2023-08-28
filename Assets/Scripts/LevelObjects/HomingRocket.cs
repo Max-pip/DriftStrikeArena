@@ -7,9 +7,7 @@ public class HomingRocket : ExplosionClass
     [SerializeField] private float _speed;
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private GameObject _targetObject;
-    //[SerializeField] private float _pointForce = 26000;
     private Collider _myCollider;
-    //private Rigidbody _enemyRigidbody;
 
     public void Initialization(GameObject targetObject) 
     {
@@ -69,7 +67,6 @@ public class HomingRocket : ExplosionClass
         {
             ExplosionForce();
             ExplosionEffect();
-            //_enemyRigidbody = null;
             Destroy(gameObject, 0.1f);
         }
     }  

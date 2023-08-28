@@ -3,9 +3,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GamePanels : MonoBehaviour
 {
+    private AdManager _adManager;
+    
+    private const string HudTag = "Hud";
     [SerializeField] private Canvas _UIHud;
 
     [Header("Panels")]
@@ -16,8 +20,29 @@ public class GamePanels : MonoBehaviour
     [Header("Text")]
     [SerializeField] private GameObject _startTextContainer;
     [SerializeField] private TextMeshProUGUI _winBalance;
+    [SerializeField] private TextMeshProUGUI _trollComment;
     [SerializeField] private TextMeshProUGUI _loseBalance;
     [SerializeField] private TextMeshProUGUI _startText;
+    private List<string> _trollCommentsList = new List<string>() 
+    {
+        "I hope you found the ad useful)",
+        "How do you like our advertising?",
+        "If you lose, watch the ad",
+        "you won an advertisement)",
+        "After such advertising, it is not a shame to lose)",
+        "Maybe you just like to watch ads?",
+        "You will succeed, but in the meantime, watch the ads(",
+        "We are very interested in what they showed you, can you tell us?",
+        "I hope this ad has broadened your horizons",
+        "You can lose for the sake of such advertising",
+        "advertising, advertising, advertising...",
+        "Oh, no! You've lost again (hee hee hee)",
+        "We are truly sorry (sarcasm)",
+        "Your punishment is 10 push-ups and an advertisement",
+        "You probably lost because of a malicious developer",
+        "Patience and perseverance conquer all, but so far, advertising",
+        "I'm sure you like advertising)"
+    };
     [Header("Buttons")]
     [SerializeField] private Button _pauseButton;
     [SerializeField] private Button _resumeButton;
@@ -39,6 +64,9 @@ public class GamePanels : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+        _adManager = GameObject.FindAnyObjectByType<AdManager>();
+        _UIHud = GameObject.FindGameObjectWithTag(HudTag)?.GetComponent<Canvas>();
+
         _initialSizeFont = _startText.fontSize;
 
         _pauseButton.onClick.AddListener(delegate
@@ -50,6 +78,8 @@ public class GamePanels : MonoBehaviour
         { 
             onClickedResumeButton();
         });
+
+        _adManager.LoadInterstitial();
 
         StartCoroutine(AnimateTextSizeCoroutine());
     }
@@ -110,6 +140,8 @@ public class GamePanels : MonoBehaviour
         _UIHud.enabled = false;
         _playPanel.SetActive(false);
         _losePanel.SetActive(true);
+        _adManager.ShowInterstitial();
+        _trollComment.text = _trollCommentsList[Random.Range(0, _trollCommentsList.Count)];
         _loseBalance.text = $"Your balance: {MainManager.Instance.coins}";
         StartCoroutine(AnimateBalanceTextCoroutine(_loseBalance));
     }

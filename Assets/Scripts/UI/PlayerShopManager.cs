@@ -69,6 +69,16 @@ public class PlayerShopManager : MonoBehaviour
         _balanceText.text = $"Balance: {MainManager.Instance.coins}";
     }
 
+    private void OnEnable()
+    {
+        AdManager.OnGetReward += GetReward;
+    }
+
+    private void OnDisable()
+    {
+        AdManager.OnGetReward -= GetReward;
+    }
+
     private void AllDelegateButtonAction()
     {
         _nextPlayerModelButton.onClick.AddListener(delegate
@@ -90,6 +100,16 @@ public class PlayerShopManager : MonoBehaviour
         {
             SelectPlayerModel();
         });
+    }
+
+    private void GetReward()
+    {
+        int randomRewardValue = Random.Range(1, 5);
+        MainManager.Instance.coins += randomRewardValue;
+        _balanceText.text = $"Balance: {MainManager.Instance.coins}";
+        MainManager.Instance.SaveGameData();
+        AudioManager.Instance.GetRewardSound();
+        ChangeTextColor();
     }
 
     public void NextPlayerModel()

@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Test.unity
     guid: 7f41a3ebbd2c4904d8e46960ae6a403a
+  - enabled: 0
+    path: Assets/IronSource/DemoScene/IronSourceDemo.unity
+    guid: ccc0ac08126704384bdda74c26d99797
   m_configObjects: {}

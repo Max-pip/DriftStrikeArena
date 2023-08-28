@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.VFX;
 
 public class ExplosionClass : MonoBehaviour
 {
